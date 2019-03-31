@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'localhost:3001'
+const API_URL = 'http://localhost:3001'
 
 let { token } = localStorage
 /* eslint-disable no-multi-assign */
@@ -15,9 +15,9 @@ const headers = {
   Authorization: token,
 }
 
-/* eslint-disable no-unused-vars */
 const get = resource => axios.get(`${API_URL}/${resource}`, { headers })
 
+/* eslint-disable no-unused-vars */
 const patch = (resource, data) =>
   axios.patch(`${API_URL}/${resource}`, data, { headers })
 
@@ -26,3 +26,5 @@ const post = (resource, data) =>
 
 const remove = resource => axios.delete(`${API_URL}/${resource}`, { headers })
 /* eslint-enable no-unused-vars */
+
+export const getCategories = () => get('categories')
