@@ -28,3 +28,5 @@ const remove = resource => axios.delete(`${API_URL}/${resource}`, { headers })
 /* eslint-enable no-unused-vars */
 
 export const getCategories = () => get('categories')
+
+export const getPosts = () => get('posts')
