@@ -15,9 +15,9 @@ const headers = {
   Authorization: token,
 }
 
-/* eslint-disable no-unused-vars */
 const get = resource => axios.get(`${API_URL}/${resource}`, { headers })
 
+/* eslint-disable no-unused-vars */
 const patch = (resource, data) =>
   axios.patch(`${API_URL}/${resource}`, data, { headers })
 
@@ -26,3 +26,5 @@ const post = (resource, data) =>
 
 const remove = resource => axios.delete(`${API_URL}/${resource}`, { headers })
 /* eslint-enable no-unused-vars */
+
+export const getCategories = () => get('categories')
