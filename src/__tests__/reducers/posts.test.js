@@ -68,4 +68,72 @@ describe('reducer', () => {
       expect(newState).toHaveProperty('isFetching', false)
     })
   })
+
+  describe('savePostsRequest', () => {
+    it('should update isFetching to true', () => {
+      const state = {
+        isPosting: false,
+      }
+      const newState = reducer(state, actions.savePostsRequest())
+
+      expect(newState).toHaveProperty('isPosting', true)
+    })
+  })
+
+  describe('savePostsSuccess', () => {
+    let post
+    let payload
+
+    beforeAll(() => {
+      post = { title: 'React Hooks' }
+      payload = post
+    })
+
+    it('should update posts to payload posts', () => {
+      const state = {
+        posts: [{ title: 'Redux with React' }],
+      }
+      const newState = reducer(state, actions.savePostsSuccess(payload))
+
+      expect(newState).toHaveProperty('posts', [...state.posts, post])
+    })
+
+    it('should update isPosting to false', () => {
+      const state = {
+        posts: [],
+        isPosting: true,
+      }
+      const newState = reducer(state, actions.savePostsSuccess(payload))
+
+      expect(newState).toHaveProperty('isPosting', false)
+    })
+  })
+
+  describe('savePostsFailure', () => {
+    let error
+    let payload
+
+    beforeAll(() => {
+      error = 'Something went wrong'
+      payload = { error }
+    })
+
+    it('should update error to payload error', () => {
+      const state = {
+        error: undefined,
+      }
+      const newState = reducer(state, actions.savePostsFailure(payload))
+
+      expect(newState).toHaveProperty('error', error)
+    })
+
+    it('should update isPosting to false', () => {
+      const state = {
+        isPosting: true,
+      }
+      const newState = reducer(state, actions.savePostsFailure(payload))
+
+      expect(newState).toHaveProperty('isPosting', false)
+    })
+  })
 })
