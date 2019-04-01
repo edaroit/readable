@@ -3,9 +3,9 @@ import {
   fetchPostsRequest,
   fetchPostsSuccess,
   fetchPostsFailure,
-  savePostsRequest,
-  savePostsSuccess,
-  savePostsFailure,
+  savePostRequest,
+  savePostSuccess,
+  savePostFailure,
 } from 'actions/posts'
 
 const initialState = {
@@ -31,16 +31,16 @@ const reducer = handleActions(
       ...action.payload,
       isFetching: false,
     }),
-    [savePostsRequest]: state => ({
+    [savePostRequest]: state => ({
       ...state,
       isPosting: true,
     }),
-    [savePostsSuccess]: (state, action) => ({
+    [savePostSuccess]: (state, action) => ({
       ...state,
       posts: [...state.posts, action.payload],
       isPosting: false,
     }),
-    [savePostsFailure]: (state, action) => ({
+    [savePostFailure]: (state, action) => ({
       ...state,
       ...action.payload,
       isPosting: false,

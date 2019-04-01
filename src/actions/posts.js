@@ -4,9 +4,9 @@ import { getPosts, postPosts } from 'utils/api'
 export const fetchPostsRequest = createAction('FETCH_POSTS_REQUEST')
 export const fetchPostsSuccess = createAction('FETCH_POSTS_SUCCESS')
 export const fetchPostsFailure = createAction('FETCH_POSTS_FAILURE')
-export const savePostsRequest = createAction('SAVE_POSTS_REQUEST')
-export const savePostsSuccess = createAction('SAVE_POSTS_SUCCESS')
-export const savePostsFailure = createAction('SAVE_POSTS_FAILURE')
+export const savePostRequest = createAction('SAVE_POST_REQUEST')
+export const savePostSuccess = createAction('SAVE_POST_SUCCESS')
+export const savePostFailure = createAction('SAVE_POST_FAILURE')
 
 export const loadPosts = () => async dispatch => {
   dispatch(fetchPostsRequest())
@@ -21,12 +21,12 @@ export const loadPosts = () => async dispatch => {
 }
 
 export const savePost = post => async dispatch => {
-  dispatch(savePostsRequest())
+  dispatch(savePostRequest())
   try {
     await postPosts(post)
-    return dispatch(savePostsSuccess(post))
+    return dispatch(savePostSuccess(post))
   } catch (exception) {
     const error = exception.message
-    return dispatch(savePostsFailure({ error }))
+    return dispatch(savePostFailure({ error }))
   }
 }

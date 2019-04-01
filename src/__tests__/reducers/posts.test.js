@@ -69,18 +69,18 @@ describe('reducer', () => {
     })
   })
 
-  describe('savePostsRequest', () => {
+  describe('savePostRequest', () => {
     it('should update isFetching to true', () => {
       const state = {
         isPosting: false,
       }
-      const newState = reducer(state, actions.savePostsRequest())
+      const newState = reducer(state, actions.savePostRequest())
 
       expect(newState).toHaveProperty('isPosting', true)
     })
   })
 
-  describe('savePostsSuccess', () => {
+  describe('savePostSuccess', () => {
     let post
     let payload
 
@@ -93,7 +93,7 @@ describe('reducer', () => {
       const state = {
         posts: [{ title: 'Redux with React' }],
       }
-      const newState = reducer(state, actions.savePostsSuccess(payload))
+      const newState = reducer(state, actions.savePostSuccess(payload))
 
       expect(newState).toHaveProperty('posts', [...state.posts, post])
     })
@@ -103,13 +103,13 @@ describe('reducer', () => {
         posts: [],
         isPosting: true,
       }
-      const newState = reducer(state, actions.savePostsSuccess(payload))
+      const newState = reducer(state, actions.savePostSuccess(payload))
 
       expect(newState).toHaveProperty('isPosting', false)
     })
   })
 
-  describe('savePostsFailure', () => {
+  describe('savePostFailure', () => {
     let error
     let payload
 
@@ -122,7 +122,7 @@ describe('reducer', () => {
       const state = {
         error: undefined,
       }
-      const newState = reducer(state, actions.savePostsFailure(payload))
+      const newState = reducer(state, actions.savePostFailure(payload))
 
       expect(newState).toHaveProperty('error', error)
     })
@@ -131,7 +131,7 @@ describe('reducer', () => {
       const state = {
         isPosting: true,
       }
-      const newState = reducer(state, actions.savePostsFailure(payload))
+      const newState = reducer(state, actions.savePostFailure(payload))
 
       expect(newState).toHaveProperty('isPosting', false)
     })
