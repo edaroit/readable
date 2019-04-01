@@ -3,13 +3,10 @@ import { getPosts, postPost, patchPost, removePost } from 'utils/api'
 
 export const fetchPostsSuccess = createAction('FETCH_POSTS_SUCCESS')
 export const fetchPostsFailure = createAction('FETCH_POSTS_FAILURE')
-export const savePostRequest = createAction('SAVE_POST_REQUEST')
 export const savePostSuccess = createAction('SAVE_POST_SUCCESS')
 export const savePostFailure = createAction('SAVE_POST_FAILURE')
-export const votePostRequest = createAction('VOTE_POST_REQUEST')
 export const votePostSuccess = createAction('VOTE_POST_SUCCESS')
 export const votePostFailure = createAction('VOTE_POST_FAILURE')
-export const updatePostRequest = createAction('UPDATE_POST_REQUEST')
 export const updatePostSuccess = createAction('UPDATE_POST_SUCCESS')
 export const updatePostFailure = createAction('UPDATE_POST_FAILURE')
 export const deletePostRequest = createAction('DELETE_POST_REQUEST')
@@ -28,7 +25,6 @@ export const loadPosts = () => async dispatch => {
 }
 
 export const savePost = post => async dispatch => {
-  dispatch(savePostRequest())
   try {
     await postPost(post)
     return dispatch(savePostSuccess(post))
@@ -39,7 +35,6 @@ export const savePost = post => async dispatch => {
 }
 
 export const votePost = (id, option) => async dispatch => {
-  dispatch(votePostRequest())
   try {
     await postPost(option, id)
     const post = { id, option }
@@ -51,7 +46,6 @@ export const votePost = (id, option) => async dispatch => {
 }
 
 export const updatePost = (id, changes) => async dispatch => {
-  dispatch(updatePostRequest())
   try {
     await patchPost(id, changes)
     const post = { id, ...changes }

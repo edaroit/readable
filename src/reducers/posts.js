@@ -2,13 +2,10 @@ import { handleActions } from 'redux-actions'
 import {
   fetchPostsSuccess,
   fetchPostsFailure,
-  savePostRequest,
   savePostSuccess,
   savePostFailure,
-  votePostRequest,
   votePostSuccess,
   votePostFailure,
-  updatePostRequest,
   updatePostSuccess,
   updatePostFailure,
   deletePostRequest,
@@ -18,7 +15,6 @@ import {
 
 const initialState = {
   posts: [],
-  isPosting: false,
   isDeleting: false,
   error: undefined,
 }
@@ -33,23 +29,13 @@ const reducer = handleActions(
       ...state,
       ...action.payload,
     }),
-    [savePostRequest]: state => ({
-      ...state,
-      isPosting: true,
-    }),
     [savePostSuccess]: (state, action) => ({
       ...state,
       posts: [...state.posts, action.payload],
-      isPosting: false,
     }),
     [savePostFailure]: (state, action) => ({
       ...state,
       ...action.payload,
-      isPosting: false,
-    }),
-    [votePostRequest]: state => ({
-      ...state,
-      isPosting: true,
     }),
     [votePostSuccess]: (state, action) => ({
       ...state,
@@ -65,16 +51,10 @@ const reducer = handleActions(
         }
         return post
       }),
-      isPosting: false,
     }),
     [votePostFailure]: (state, action) => ({
       ...state,
       ...action.payload,
-      isPosting: false,
-    }),
-    [updatePostRequest]: state => ({
-      ...state,
-      isPosting: true,
     }),
     [updatePostSuccess]: (state, action) => ({
       ...state,
@@ -88,12 +68,10 @@ const reducer = handleActions(
         }
         return post
       }),
-      isPosting: false,
     }),
     [updatePostFailure]: (state, action) => ({
       ...state,
       ...action.payload,
-      isPosting: false,
     }),
     [deletePostRequest]: state => ({
       ...state,

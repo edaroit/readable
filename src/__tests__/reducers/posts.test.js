@@ -40,17 +40,6 @@ describe('reducer', () => {
     })
   })
 
-  describe('savePostRequest', () => {
-    it('should update isPosting to true', () => {
-      const state = {
-        isPosting: false,
-      }
-      const newState = reducer(state, actions.savePostRequest())
-
-      expect(newState).toHaveProperty('isPosting', true)
-    })
-  })
-
   describe('savePostSuccess', () => {
     let post
     let payload
@@ -60,23 +49,13 @@ describe('reducer', () => {
       payload = post
     })
 
-    it('should update posts to payload posts', () => {
+    it('should update state posts with payload content', () => {
       const state = {
         posts: [{ title: 'Redux with React' }],
       }
       const newState = reducer(state, actions.savePostSuccess(payload))
 
       expect(newState).toHaveProperty('posts', [...state.posts, post])
-    })
-
-    it('should update isPosting to false', () => {
-      const state = {
-        posts: [],
-        isPosting: true,
-      }
-      const newState = reducer(state, actions.savePostSuccess(payload))
-
-      expect(newState).toHaveProperty('isPosting', false)
     })
   })
 
@@ -89,33 +68,13 @@ describe('reducer', () => {
       payload = { error }
     })
 
-    it('should update error to payload error', () => {
+    it('should update state error with payload content', () => {
       const state = {
         error: undefined,
       }
       const newState = reducer(state, actions.savePostFailure(payload))
 
       expect(newState).toHaveProperty('error', error)
-    })
-
-    it('should update isPosting to false', () => {
-      const state = {
-        isPosting: true,
-      }
-      const newState = reducer(state, actions.savePostFailure(payload))
-
-      expect(newState).toHaveProperty('isPosting', false)
-    })
-  })
-
-  describe('votePostRequest', () => {
-    it('should update isPosting to true', () => {
-      const state = {
-        isPosting: false,
-      }
-      const newState = reducer(state, actions.votePostRequest())
-
-      expect(newState).toHaveProperty('isPosting', true)
     })
   })
 
@@ -128,7 +87,7 @@ describe('reducer', () => {
       payload = { post }
     })
 
-    it('should vote posts to payload posts', () => {
+    it('should update state posts with payload content', () => {
       const state = {
         posts: [
           {
@@ -143,16 +102,6 @@ describe('reducer', () => {
       expect(updatedPost).toHaveProperty('id', post.id)
       expect(updatedPost).toHaveProperty('voteScore', 1)
     })
-
-    it('should update isPosting to false', () => {
-      const state = {
-        posts: [],
-        isPosting: true,
-      }
-      const newState = reducer(state, actions.votePostSuccess(payload))
-
-      expect(newState).toHaveProperty('isPosting', false)
-    })
   })
 
   describe('votePostFailure', () => {
@@ -164,33 +113,13 @@ describe('reducer', () => {
       payload = { error }
     })
 
-    it('should update error to payload error', () => {
+    it('should update state error with payload content', () => {
       const state = {
         error: undefined,
       }
       const newState = reducer(state, actions.votePostFailure(payload))
 
       expect(newState).toHaveProperty('error', error)
-    })
-
-    it('should update isPosting to false', () => {
-      const state = {
-        isPosting: true,
-      }
-      const newState = reducer(state, actions.votePostFailure(payload))
-
-      expect(newState).toHaveProperty('isPosting', false)
-    })
-  })
-
-  describe('updatePostRequest', () => {
-    it('should update isPosting to true', () => {
-      const state = {
-        isPosting: false,
-      }
-      const newState = reducer(state, actions.updatePostRequest())
-
-      expect(newState).toHaveProperty('isPosting', true)
     })
   })
 
@@ -203,7 +132,7 @@ describe('reducer', () => {
       payload = { post }
     })
 
-    it('should update posts to payload posts', () => {
+    it('should update state posts with payload content', () => {
       const state = {
         posts: [
           {
@@ -222,16 +151,6 @@ describe('reducer', () => {
       expect(updatedPost).toHaveProperty('body', post.body)
       expect(updatedPost).toHaveProperty('author', 'A Nice Guy')
     })
-
-    it('should update isPosting to false', () => {
-      const state = {
-        posts: [],
-        isPosting: true,
-      }
-      const newState = reducer(state, actions.updatePostSuccess(payload))
-
-      expect(newState).toHaveProperty('isPosting', false)
-    })
   })
 
   describe('updatePostFailure', () => {
@@ -243,22 +162,13 @@ describe('reducer', () => {
       payload = { error }
     })
 
-    it('should update error to payload error', () => {
+    it('should update state error with payload content', () => {
       const state = {
         error: undefined,
       }
       const newState = reducer(state, actions.updatePostFailure(payload))
 
       expect(newState).toHaveProperty('error', error)
-    })
-
-    it('should update isPosting to false', () => {
-      const state = {
-        isPosting: true,
-      }
-      const newState = reducer(state, actions.updatePostFailure(payload))
-
-      expect(newState).toHaveProperty('isPosting', false)
     })
   })
 
@@ -282,7 +192,7 @@ describe('reducer', () => {
       payload = { post }
     })
 
-    it('should delete posts to payload posts', () => {
+    it('should update state posts with payload content', () => {
       const state = {
         posts: [
           {
@@ -318,7 +228,7 @@ describe('reducer', () => {
       payload = { error }
     })
 
-    it('should delete error to payload error', () => {
+    it('should update state error with payload content', () => {
       const state = {
         error: undefined,
       }
