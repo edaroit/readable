@@ -82,25 +82,50 @@ describe('reducer', () => {
     let post
     let payload
 
-    beforeAll(() => {
-      post = { id: 0, option: 'upVote' }
-      payload = { post }
+    describe('when options is upVote', () => {
+      beforeAll(() => {
+        post = { id: 0, option: 'upVote' }
+        payload = { post }
+      })
+
+      it('should update state posts with payload content', () => {
+        const state = {
+          posts: [
+            {
+              id: 0,
+              voteScore: 0,
+            },
+          ],
+        }
+        const newState = reducer(state, actions.votePostSuccess(payload))
+        const updatedPost = newState.posts.find(p => p.id === post.id)
+
+        expect(updatedPost).toHaveProperty('id', post.id)
+        expect(updatedPost).toHaveProperty('voteScore', 1)
+      })
     })
 
-    it('should update state posts with payload content', () => {
-      const state = {
-        posts: [
-          {
-            id: 0,
-            voteScore: 0,
-          },
-        ],
-      }
-      const newState = reducer(state, actions.votePostSuccess(payload))
-      const updatedPost = newState.posts.find(p => p.id === post.id)
+    describe('when options is downVote', () => {
+      beforeAll(() => {
+        post = { id: 0, option: 'downVote' }
+        payload = { post }
+      })
 
-      expect(updatedPost).toHaveProperty('id', post.id)
-      expect(updatedPost).toHaveProperty('voteScore', 1)
+      it('should update state posts with payload content', () => {
+        const state = {
+          posts: [
+            {
+              id: 0,
+              voteScore: 1,
+            },
+          ],
+        }
+        const newState = reducer(state, actions.votePostSuccess(payload))
+        const updatedPost = newState.posts.find(p => p.id === post.id)
+
+        expect(updatedPost).toHaveProperty('id', post.id)
+        expect(updatedPost).toHaveProperty('voteScore', 0)
+      })
     })
   })
 
