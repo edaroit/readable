@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { getPosts, postPost, patchPost } from 'utils/api'
+import { getPosts, postPost, patchPost, removePost } from 'utils/api'
 
 export const fetchPostsRequest = createAction('FETCH_POSTS_REQUEST')
 export const fetchPostsSuccess = createAction('FETCH_POSTS_SUCCESS')
@@ -10,6 +10,9 @@ export const savePostFailure = createAction('SAVE_POST_FAILURE')
 export const updatePostRequest = createAction('UPDATE_POST_REQUEST')
 export const updatePostSuccess = createAction('UPDATE_POST_SUCCESS')
 export const updatePostFailure = createAction('UPDATE_POST_FAILURE')
+export const deletePostRequest = createAction('REMOVE_POST_REQUEST')
+export const deletePostSuccess = createAction('REMOVE_POST_SUCCESS')
+export const deletePostFailure = createAction('REMOVE_POST_FAILURE')
 
 export const loadPosts = () => async dispatch => {
   dispatch(fetchPostsRequest())
@@ -43,5 +46,17 @@ export const updatePost = (id, changes) => async dispatch => {
   } catch (exception) {
     const error = exception.message
     return dispatch(updatePostFailure({ error }))
+  }
+}
+
+export const deletePost = id => async dispatch => {
+  dispatch(deletePostRequest())
+  try {
+    await removePost(id)
+    const post = { id }
+    return dispatch(deletePostSuccess({ post }))
+  } catch (exception) {
+    const error = exception.message
+    return dispatch(deletePostFailure({ error }))
   }
 }
