@@ -136,4 +136,83 @@ describe('reducer', () => {
       expect(newState).toHaveProperty('isPosting', false)
     })
   })
+
+  describe('updatePostRequest', () => {
+    it('should update isPosting to true', () => {
+      const state = {
+        isPosting: false,
+      }
+      const newState = reducer(state, actions.updatePostRequest())
+
+      expect(newState).toHaveProperty('isPosting', true)
+    })
+  })
+
+  describe('updatePostSuccess', () => {
+    let post
+    let payload
+
+    beforeAll(() => {
+      post = { id: 0, title: 'React Hooks', body: 'They are great' }
+      payload = { post }
+    })
+
+    it('should update posts to payload posts', () => {
+      const state = {
+        posts: [
+          {
+            id: 0,
+            title: 'Redux with React',
+            body: 'Great match',
+            author: 'A Nice Guy',
+          },
+        ],
+      }
+      const newState = reducer(state, actions.updatePostSuccess(payload))
+      const updatedPost = newState.posts.find(p => p.id === post.id)
+
+      expect(updatedPost).toHaveProperty('id', post.id)
+      expect(updatedPost).toHaveProperty('title', post.title)
+      expect(updatedPost).toHaveProperty('body', post.body)
+      expect(updatedPost).toHaveProperty('author', 'A Nice Guy')
+    })
+
+    it('should update isPosting to false', () => {
+      const state = {
+        posts: [],
+        isPosting: true,
+      }
+      const newState = reducer(state, actions.updatePostSuccess(payload))
+
+      expect(newState).toHaveProperty('isPosting', false)
+    })
+  })
+
+  describe('updatePostFailure', () => {
+    let error
+    let payload
+
+    beforeAll(() => {
+      error = 'Something went wrong'
+      payload = { error }
+    })
+
+    it('should update error to payload error', () => {
+      const state = {
+        error: undefined,
+      }
+      const newState = reducer(state, actions.updatePostFailure(payload))
+
+      expect(newState).toHaveProperty('error', error)
+    })
+
+    it('should update isPosting to false', () => {
+      const state = {
+        isPosting: true,
+      }
+      const newState = reducer(state, actions.updatePostFailure(payload))
+
+      expect(newState).toHaveProperty('isPosting', false)
+    })
+  })
 })
