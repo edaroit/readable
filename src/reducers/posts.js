@@ -9,12 +9,16 @@ import {
   updatePostRequest,
   updatePostSuccess,
   updatePostFailure,
+  deletePostRequest,
+  deletePostSuccess,
+  deletePostFailure,
 } from 'actions/posts'
 
 const initialState = {
   posts: [],
   isFetching: false,
   isPosting: false,
+  isDeleting: false,
   error: undefined,
 }
 
@@ -70,6 +74,20 @@ const reducer = handleActions(
       ...state,
       ...action.payload,
       isPosting: false,
+    }),
+    [deletePostRequest]: state => ({
+      ...state,
+      isDeleting: true,
+    }),
+    [deletePostSuccess]: (state, action) => ({
+      ...state,
+      posts: state.posts.filter(post => post.id !== action.payload.post.id),
+      isDeleting: false,
+    }),
+    [deletePostFailure]: (state, action) => ({
+      ...state,
+      ...action.payload,
+      isDeleting: false,
     }),
   },
   initialState,

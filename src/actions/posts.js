@@ -10,9 +10,9 @@ export const savePostFailure = createAction('SAVE_POST_FAILURE')
 export const updatePostRequest = createAction('UPDATE_POST_REQUEST')
 export const updatePostSuccess = createAction('UPDATE_POST_SUCCESS')
 export const updatePostFailure = createAction('UPDATE_POST_FAILURE')
-export const deletePostRequest = createAction('REMOVE_POST_REQUEST')
-export const deletePostSuccess = createAction('REMOVE_POST_SUCCESS')
-export const deletePostFailure = createAction('REMOVE_POST_FAILURE')
+export const deletePostRequest = createAction('DELETE_POST_REQUEST')
+export const deletePostSuccess = createAction('DELETE_POST_SUCCESS')
+export const deletePostFailure = createAction('DELETE_POST_FAILURE')
 
 export const loadPosts = () => async dispatch => {
   dispatch(fetchPostsRequest())
