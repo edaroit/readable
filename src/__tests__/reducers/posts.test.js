@@ -172,17 +172,6 @@ describe('reducer', () => {
     })
   })
 
-  describe('deletePostRequest', () => {
-    it('should delete isDeleting to true', () => {
-      const state = {
-        isPosting: false,
-      }
-      const newState = reducer(state, actions.deletePostRequest())
-
-      expect(newState).toHaveProperty('isDeleting', true)
-    })
-  })
-
   describe('deletePostSuccess', () => {
     let post
     let payload
@@ -207,16 +196,6 @@ describe('reducer', () => {
 
       expect(newState).toHaveProperty('posts', [])
     })
-
-    it('should delete isDeleting to false', () => {
-      const state = {
-        posts: [],
-        isDeleting: true,
-      }
-      const newState = reducer(state, actions.deletePostSuccess(payload))
-
-      expect(newState).toHaveProperty('isDeleting', false)
-    })
   })
 
   describe('deletePostFailure', () => {
@@ -235,15 +214,6 @@ describe('reducer', () => {
       const newState = reducer(state, actions.deletePostFailure(payload))
 
       expect(newState).toHaveProperty('error', error)
-    })
-
-    it('should delete isDeleting to false', () => {
-      const state = {
-        isDeleting: true,
-      }
-      const newState = reducer(state, actions.deletePostFailure(payload))
-
-      expect(newState).toHaveProperty('isDeleting', false)
     })
   })
 })

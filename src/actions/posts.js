@@ -9,7 +9,6 @@ export const votePostSuccess = createAction('VOTE_POST_SUCCESS')
 export const votePostFailure = createAction('VOTE_POST_FAILURE')
 export const updatePostSuccess = createAction('UPDATE_POST_SUCCESS')
 export const updatePostFailure = createAction('UPDATE_POST_FAILURE')
-export const deletePostRequest = createAction('DELETE_POST_REQUEST')
 export const deletePostSuccess = createAction('DELETE_POST_SUCCESS')
 export const deletePostFailure = createAction('DELETE_POST_FAILURE')
 
@@ -57,7 +56,6 @@ export const updatePost = (id, changes) => async dispatch => {
 }
 
 export const deletePost = id => async dispatch => {
-  dispatch(deletePostRequest())
   try {
     await removePost(id)
     const post = { id }
