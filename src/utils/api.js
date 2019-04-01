@@ -29,7 +29,10 @@ export const getCategories = () => get('categories')
 
 export const getPosts = () => get('posts')
 
-export const postPost = data => post('posts', data)
+export const postPost = (data, id) => {
+  if (id) post(`posts/${id}`, data)
+  post('posts', data)
+}
 
 export const patchPost = (id, data) => patch(`posts/${id}`, data)
 
