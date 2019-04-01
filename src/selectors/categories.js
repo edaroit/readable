@@ -1,1 +1,3 @@
-export const getCategories = state => state.categories.categories
+const categoriesSelector = state => state.categories.categories
+
+export const getCategories = categoriesSelector
