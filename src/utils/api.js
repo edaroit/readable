@@ -17,14 +17,23 @@ const headers = {
 
 const get = resource => axios.get(`${API_URL}/${resource}`, { headers })
 
-/* eslint-disable no-unused-vars */
-const patch = (resource, data) =>
-  axios.patch(`${API_URL}/${resource}`, data, { headers })
-
 const post = (resource, data) =>
   axios.post(`${API_URL}/${resource}`, data, { headers })
 
+const patch = (resource, data) =>
+  axios.patch(`${API_URL}/${resource}`, data, { headers })
+
 const remove = resource => axios.delete(`${API_URL}/${resource}`, { headers })
-/* eslint-enable no-unused-vars */
 
 export const getCategories = () => get('categories')
+
+export const getPosts = () => get('posts')
+
+export const postPost = (data, id) => {
+  if (id) post(`posts/${id}`, data)
+  post('posts', data)
+}
+
+export const patchPost = (id, data) => patch(`posts/${id}`, data)
+
+export const removePost = id => remove(`posts/${id}`)
