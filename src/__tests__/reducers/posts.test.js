@@ -152,29 +152,88 @@ describe('reducer', () => {
     let post
     let payload
 
-    beforeAll(() => {
-      post = { id: 0, title: 'React Hooks', body: 'They are great' }
-      payload = { post }
+    describe('when both title and body is updated', () => {
+      beforeAll(() => {
+        post = { id: 0, title: 'React Hooks', body: 'They are great' }
+        payload = { post }
+      })
+
+      it('should update state posts with payload content', () => {
+        const state = {
+          posts: [
+            {
+              id: 0,
+              title: 'Redux with React',
+              body: 'Great match',
+              author: 'A Nice Guy',
+            },
+          ],
+        }
+        const newState = reducer(state, actions.updatePostSuccess(payload))
+        const originalPost = state.posts[0]
+        const updatedPost = newState.posts.find(p => p.id === post.id)
+
+        expect(updatedPost).toHaveProperty('id', post.id)
+        expect(updatedPost).toHaveProperty('title', post.title)
+        expect(updatedPost).toHaveProperty('body', post.body)
+        expect(updatedPost).toHaveProperty('author', originalPost.author)
+      })
     })
 
-    it('should update state posts with payload content', () => {
-      const state = {
-        posts: [
-          {
-            id: 0,
-            title: 'Redux with React',
-            body: 'Great match',
-            author: 'A Nice Guy',
-          },
-        ],
-      }
-      const newState = reducer(state, actions.updatePostSuccess(payload))
-      const updatedPost = newState.posts.find(p => p.id === post.id)
+    describe('when only title is updated', () => {
+      beforeAll(() => {
+        post = { id: 0, title: 'React Hooks' }
+        payload = { post }
+      })
 
-      expect(updatedPost).toHaveProperty('id', post.id)
-      expect(updatedPost).toHaveProperty('title', post.title)
-      expect(updatedPost).toHaveProperty('body', post.body)
-      expect(updatedPost).toHaveProperty('author', 'A Nice Guy')
+      it('should update state posts with payload content', () => {
+        const state = {
+          posts: [
+            {
+              id: 0,
+              title: 'Redux with React',
+              body: 'Great match',
+              author: 'A Nice Guy',
+            },
+          ],
+        }
+        const newState = reducer(state, actions.updatePostSuccess(payload))
+        const originalPost = state.posts[0]
+        const updatedPost = newState.posts.find(p => p.id === post.id)
+
+        expect(updatedPost).toHaveProperty('id', post.id)
+        expect(updatedPost).toHaveProperty('title', post.title)
+        expect(updatedPost).toHaveProperty('body', originalPost.body)
+        expect(updatedPost).toHaveProperty('author', originalPost.author)
+      })
+    })
+
+    describe('when only body is updated', () => {
+      beforeAll(() => {
+        post = { id: 0, body: 'They are great' }
+        payload = { post }
+      })
+
+      it('should update state posts with payload content', () => {
+        const state = {
+          posts: [
+            {
+              id: 0,
+              title: 'Redux with React',
+              body: 'Great match',
+              author: 'A Nice Guy',
+            },
+          ],
+        }
+        const newState = reducer(state, actions.updatePostSuccess(payload))
+        const originalPost = state.posts[0]
+        const updatedPost = newState.posts.find(p => p.id === post.id)
+
+        expect(updatedPost).toHaveProperty('id', post.id)
+        expect(updatedPost).toHaveProperty('title', originalPost.title)
+        expect(updatedPost).toHaveProperty('body', post.body)
+        expect(updatedPost).toHaveProperty('author', originalPost.author)
+      })
     })
   })
 

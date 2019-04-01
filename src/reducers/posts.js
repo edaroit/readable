@@ -60,8 +60,8 @@ const reducer = handleActions(
         if (post.id === action.payload.post.id) {
           return {
             ...post,
-            title: action.payload.post.title,
-            body: action.payload.post.body,
+            title: action.payload.post.title || post.title,
+            body: action.payload.post.body || post.body,
           }
         }
         return post
