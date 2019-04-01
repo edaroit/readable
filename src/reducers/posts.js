@@ -1,6 +1,5 @@
 import { handleActions } from 'redux-actions'
 import {
-  fetchPostsRequest,
   fetchPostsSuccess,
   fetchPostsFailure,
   savePostRequest,
@@ -19,7 +18,6 @@ import {
 
 const initialState = {
   posts: [],
-  isFetching: false,
   isPosting: false,
   isDeleting: false,
   error: undefined,
@@ -27,19 +25,13 @@ const initialState = {
 
 const reducer = handleActions(
   {
-    [fetchPostsRequest]: state => ({
-      ...state,
-      isFetching: true,
-    }),
     [fetchPostsSuccess]: (state, action) => ({
       ...state,
       ...action.payload,
-      isFetching: false,
     }),
     [fetchPostsFailure]: (state, action) => ({
       ...state,
       ...action.payload,
-      isFetching: false,
     }),
     [savePostRequest]: state => ({
       ...state,

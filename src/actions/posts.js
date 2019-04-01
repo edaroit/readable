@@ -1,7 +1,6 @@
 import { createAction } from 'redux-actions'
 import { getPosts, postPost, patchPost, removePost } from 'utils/api'
 
-export const fetchPostsRequest = createAction('FETCH_POSTS_REQUEST')
 export const fetchPostsSuccess = createAction('FETCH_POSTS_SUCCESS')
 export const fetchPostsFailure = createAction('FETCH_POSTS_FAILURE')
 export const savePostRequest = createAction('SAVE_POST_REQUEST')
@@ -18,7 +17,6 @@ export const deletePostSuccess = createAction('DELETE_POST_SUCCESS')
 export const deletePostFailure = createAction('DELETE_POST_FAILURE')
 
 export const loadPosts = () => async dispatch => {
-  dispatch(fetchPostsRequest())
   try {
     const response = await getPosts()
     const posts = response.data
