@@ -7,6 +7,9 @@ export const fetchPostsFailure = createAction('FETCH_POSTS_FAILURE')
 export const savePostRequest = createAction('SAVE_POST_REQUEST')
 export const savePostSuccess = createAction('SAVE_POST_SUCCESS')
 export const savePostFailure = createAction('SAVE_POST_FAILURE')
+export const votePostRequest = createAction('VOTE_POST_REQUEST')
+export const votePostSuccess = createAction('VOTE_POST_SUCCESS')
+export const votePostFailure = createAction('VOTE_POST_FAILURE')
 export const updatePostRequest = createAction('UPDATE_POST_REQUEST')
 export const updatePostSuccess = createAction('UPDATE_POST_SUCCESS')
 export const updatePostFailure = createAction('UPDATE_POST_FAILURE')
@@ -34,6 +37,18 @@ export const savePost = post => async dispatch => {
   } catch (exception) {
     const error = exception.message
     return dispatch(savePostFailure({ error }))
+  }
+}
+
+export const votePost = (id, option) => async dispatch => {
+  dispatch(votePostRequest())
+  try {
+    await postPost(option, id)
+    const post = { id, option }
+    return dispatch(votePostSuccess(post))
+  } catch (exception) {
+    const error = exception.message
+    return dispatch(votePostFailure({ error }))
   }
 }
 
