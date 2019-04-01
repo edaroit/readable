@@ -6,6 +6,9 @@ import {
   savePostRequest,
   savePostSuccess,
   savePostFailure,
+  votePostRequest,
+  votePostSuccess,
+  votePostFailure,
   updatePostRequest,
   updatePostSuccess,
   updatePostFailure,
@@ -48,6 +51,31 @@ const reducer = handleActions(
       isPosting: false,
     }),
     [savePostFailure]: (state, action) => ({
+      ...state,
+      ...action.payload,
+      isPosting: false,
+    }),
+    [votePostRequest]: state => ({
+      ...state,
+      isPosting: true,
+    }),
+    [votePostSuccess]: (state, action) => ({
+      ...state,
+      posts: state.posts.map(post => {
+        if (post.id === action.payload.post.id) {
+          return {
+            ...post,
+            voteScore:
+              action.payload.post.option === 'upVote'
+                ? post.voteScore + 1
+                : post.voteScore - 1,
+          }
+        }
+        return post
+      }),
+      isPosting: false,
+    }),
+    [votePostFailure]: (state, action) => ({
       ...state,
       ...action.payload,
       isPosting: false,

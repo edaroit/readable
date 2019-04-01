@@ -137,6 +137,81 @@ describe('reducer', () => {
     })
   })
 
+  describe('votePostRequest', () => {
+    it('should update isPosting to true', () => {
+      const state = {
+        isPosting: false,
+      }
+      const newState = reducer(state, actions.votePostRequest())
+
+      expect(newState).toHaveProperty('isPosting', true)
+    })
+  })
+
+  describe('votePostSuccess', () => {
+    let post
+    let payload
+
+    beforeAll(() => {
+      post = { id: 0, option: 'upVote' }
+      payload = { post }
+    })
+
+    it('should vote posts to payload posts', () => {
+      const state = {
+        posts: [
+          {
+            id: 0,
+            voteScore: 0,
+          },
+        ],
+      }
+      const newState = reducer(state, actions.votePostSuccess(payload))
+      const updatedPost = newState.posts.find(p => p.id === post.id)
+
+      expect(updatedPost).toHaveProperty('id', post.id)
+      expect(updatedPost).toHaveProperty('voteScore', 1)
+    })
+
+    it('should update isPosting to false', () => {
+      const state = {
+        posts: [],
+        isPosting: true,
+      }
+      const newState = reducer(state, actions.votePostSuccess(payload))
+
+      expect(newState).toHaveProperty('isPosting', false)
+    })
+  })
+
+  describe('votePostFailure', () => {
+    let error
+    let payload
+
+    beforeAll(() => {
+      error = 'Something went wrong'
+      payload = { error }
+    })
+
+    it('should update error to payload error', () => {
+      const state = {
+        error: undefined,
+      }
+      const newState = reducer(state, actions.votePostFailure(payload))
+
+      expect(newState).toHaveProperty('error', error)
+    })
+
+    it('should update isPosting to false', () => {
+      const state = {
+        isPosting: true,
+      }
+      const newState = reducer(state, actions.votePostFailure(payload))
+
+      expect(newState).toHaveProperty('isPosting', false)
+    })
+  })
+
   describe('updatePostRequest', () => {
     it('should update isPosting to true', () => {
       const state = {
