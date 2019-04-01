@@ -70,7 +70,7 @@ describe('reducer', () => {
   })
 
   describe('savePostRequest', () => {
-    it('should update isFetching to true', () => {
+    it('should update isPosting to true', () => {
       const state = {
         isPosting: false,
       }

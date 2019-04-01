@@ -31,4 +31,4 @@ export const getCategories = () => get('categories')
 
 export const getPosts = () => get('posts')
 
-export const postPosts = data => post('posts', data)
+export const postPost = data => post('posts', data)

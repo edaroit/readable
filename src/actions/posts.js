@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { getPosts, postPosts } from 'utils/api'
+import { getPosts, postPost } from 'utils/api'
 
 export const fetchPostsRequest = createAction('FETCH_POSTS_REQUEST')
 export const fetchPostsSuccess = createAction('FETCH_POSTS_SUCCESS')
@@ -23,7 +23,7 @@ export const loadPosts = () => async dispatch => {
 export const savePost = post => async dispatch => {
   dispatch(savePostRequest())
   try {
-    await postPosts(post)
+    await postPost(post)
     return dispatch(savePostSuccess(post))
   } catch (exception) {
     const error = exception.message
