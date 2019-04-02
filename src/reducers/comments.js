@@ -2,6 +2,8 @@ import { handleActions } from 'redux-actions'
 import {
   fetchCommentsSuccess,
   fetchCommentsFailure,
+  saveCommentSuccess,
+  saveCommentFailure,
 } from 'actions/comments'
 
 const initialState = {
@@ -16,6 +18,14 @@ const reducer = handleActions(
       ...action.payload,
     }),
     [fetchCommentsFailure]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [saveCommentSuccess]: (state, action) => ({
+      ...state,
+      comments: [...state.comments, action.payload],
+    }),
+    [saveCommentFailure]: (state, action) => ({
       ...state,
       ...action.payload,
     }),

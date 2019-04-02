@@ -39,4 +39,42 @@ describe('reducer', () => {
       expect(newState).toHaveProperty('error', error)
     })
   })
+
+  describe('saveCommentSuccess', () => {
+    let comment
+    let payload
+
+    beforeAll(() => {
+      comment = { body: 'React Hooks' }
+      payload = comment
+    })
+
+    it('should update state comments with payload content', () => {
+      const state = {
+        comments: [{ body: 'Redux with React' }],
+      }
+      const newState = reducer(state, actions.saveCommentSuccess(payload))
+
+      expect(newState).toHaveProperty('comments', [...state.comments, comment])
+    })
+  })
+
+  describe('saveCommentFailure', () => {
+    let error
+    let payload
+
+    beforeAll(() => {
+      error = 'Something went wrong'
+      payload = { error }
+    })
+
+    it('should update state error with payload content', () => {
+      const state = {
+        error: undefined,
+      }
+      const newState = reducer(state, actions.saveCommentFailure(payload))
+
+      expect(newState).toHaveProperty('error', error)
+    })
+  })
 })
