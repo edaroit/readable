@@ -6,6 +6,8 @@ import {
   saveCommentFailure,
   voteCommentSuccess,
   voteCommentFailure,
+  updateCommentSuccess,
+  updateCommentFailure,
 } from 'actions/comments'
 
 const initialState = {
@@ -47,6 +49,22 @@ const reducer = handleActions(
       }),
     }),
     [voteCommentFailure]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [updateCommentSuccess]: (state, action) => ({
+      ...state,
+      comments: state.comments.map(comment => {
+        if (comment.id === action.payload.comment.id) {
+          return {
+            ...comment,
+            body: action.payload.comment.body || comment.body,
+          }
+        }
+        return comment
+      }),
+    }),
+    [updateCommentFailure]: (state, action) => ({
       ...state,
       ...action.payload,
     }),

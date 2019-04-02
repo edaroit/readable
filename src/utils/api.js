@@ -44,3 +44,5 @@ export const postComment = (data, id) => {
   if (id) post(`comments/${id}`, data)
   post('comments', data)
 }
+
+export const patchComment = (id, data) => patch(`comments/${id}`, data)

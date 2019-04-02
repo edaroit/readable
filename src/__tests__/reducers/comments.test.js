@@ -147,4 +147,54 @@ describe('reducer', () => {
       expect(newState).toHaveProperty('error', error)
     })
   })
+
+  describe('updateCommentSuccess', () => {
+    let comment
+    let payload
+
+    describe('when only body is updated', () => {
+      beforeAll(() => {
+        comment = { id: 0, body: 'They are great' }
+        payload = { comment }
+      })
+
+      it('should update state comments with payload content', () => {
+        const state = {
+          comments: [
+            {
+              id: 0,
+              body: 'Great match',
+              author: 'A Nice Guy',
+            },
+          ],
+        }
+        const newState = reducer(state, actions.updateCommentSuccess(payload))
+        const originalComment = state.comments[0]
+        const updatedComment = newState.comments.find(p => p.id === comment.id)
+
+        expect(updatedComment).toHaveProperty('id', comment.id)
+        expect(updatedComment).toHaveProperty('body', comment.body)
+        expect(updatedComment).toHaveProperty('author', originalComment.author)
+      })
+    })
+  })
+
+  describe('updateCommentFailure', () => {
+    let error
+    let payload
+
+    beforeAll(() => {
+      error = 'Something went wrong'
+      payload = { error }
+    })
+
+    it('should update state error with payload content', () => {
+      const state = {
+        error: undefined,
+      }
+      const newState = reducer(state, actions.updateCommentFailure(payload))
+
+      expect(newState).toHaveProperty('error', error)
+    })
+  })
 })
