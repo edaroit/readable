@@ -10,11 +10,13 @@
     "prettier/prettier": ["error"],
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
+    "react/button-has-type": 0,
     "react/jsx-filename-extension": [
       1,
       {
         "extensions": [".js"]
       }
-    ]
+    ],
+    "react/prop-types": 0
   }
 }
