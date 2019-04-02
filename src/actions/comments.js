@@ -8,6 +8,8 @@ export const fetchCommentsSuccess = createAction('FETCH_COMMENTS_SUCCESS')
 export const fetchCommentsFailure = createAction('FETCH_COMMENTS_FAILURE')
 export const saveCommentSuccess = createAction('SAVE_COMMENT_SUCCESS')
 export const saveCommentFailure = createAction('SAVE_COMMENT_FAILURE')
+export const voteCommentSuccess = createAction('VOTE_COMMENT_SUCCESS')
+export const voteCommentFailure = createAction('VOTE_COMMENT_FAILURE')
 
 export const loadComments = postId => async dispatch => {
   try {
@@ -27,5 +29,16 @@ export const saveComment = comment => async dispatch => {
   } catch (exception) {
     const error = exception.message
     return dispatch(saveCommentFailure({ error }))
+  }
+}
+
+export const voteComment = (id, option) => async dispatch => {
+  try {
+    await postComment(option, id)
+    const comment = { id, option }
+    return dispatch(voteCommentSuccess(comment))
+  } catch (exception) {
+    const error = exception.message
+    return dispatch(voteCommentFailure({ error }))
   }
 }

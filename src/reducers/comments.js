@@ -4,6 +4,8 @@ import {
   fetchCommentsFailure,
   saveCommentSuccess,
   saveCommentFailure,
+  voteCommentSuccess,
+  voteCommentFailure,
 } from 'actions/comments'
 
 const initialState = {
@@ -26,6 +28,25 @@ const reducer = handleActions(
       comments: [...state.comments, action.payload],
     }),
     [saveCommentFailure]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [voteCommentSuccess]: (state, action) => ({
+      ...state,
+      comments: state.comments.map(comment => {
+        if (comment.id === action.payload.comment.id) {
+          return {
+            ...comment,
+            voteScore:
+              action.payload.comment.option === 'upVote'
+                ? comment.voteScore + 1
+                : comment.voteScore - 1,
+          }
+        }
+        return comment
+      }),
+    }),
+    [voteCommentFailure]: (state, action) => ({
       ...state,
       ...action.payload,
     }),
