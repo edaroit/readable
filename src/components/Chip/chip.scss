@@ -1,0 +1,17 @@
+@import "../../stylesheets/_variables";
+
+.chip {
+  height: 2rem;
+  line-height: 2rem;
+  display: inline-block;
+  background: $white;
+  border: 1px solid $black;
+  padding: 0 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  
+  &:hover {
+    background: $gray;
+  }
+}
