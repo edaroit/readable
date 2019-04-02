@@ -7,6 +7,8 @@ import reducer from 'reducers'
 import middleware from 'middlewares'
 import App from 'components/App'
 
+import 'stylesheets/_flex.scss'
+
 const store = createStore(reducer, middleware)
 
 ReactDOM.render(
