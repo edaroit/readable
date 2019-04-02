@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 
-const postsSelector = state => state.posts.posts
+const postsSelector = state =>
+  state.posts.posts.filter(post => post.deleted === false)
 
 const filterPostByCategory = (posts, category) =>
   posts.filter(post => post.category === category)

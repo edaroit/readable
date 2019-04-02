@@ -37,3 +37,14 @@ export const postPost = (data, id) => {
 export const patchPost = (id, data) => patch(`posts/${id}`, data)
 
 export const removePost = id => remove(`posts/${id}`)
+
+export const getComments = postId => get(`posts/${postId}/comments`)
+
+export const postComment = (data, id) => {
+  if (id) post(`comments/${id}`, data)
+  post('comments', data)
+}
+
+export const patchComment = (id, data) => patch(`comments/${id}`, data)
+
+export const removeComment = id => remove(`comments/${id}`)
