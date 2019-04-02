@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import Button from 'components/Button'
 import Card from 'components/Card'
 import Chip from 'components/Chip'
 
@@ -26,6 +27,7 @@ const Dashboard = ({
       {categories.map(category => (
         <Chip key={category.name}>{category.name}</Chip>
       ))}
+      <Button>New Post</Button>
       {posts.map(post => (
         <Card key={post.id}>{post.title}</Card>
       ))}
