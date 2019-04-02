@@ -18,6 +18,7 @@
         "extensions": [".js"]
       }
     ],
+    "react/jsx-one-expression-per-line": 0,
     "react/prop-types": 0
   }
 }
