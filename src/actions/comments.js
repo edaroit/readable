@@ -21,7 +21,7 @@ export const loadComments = postId => async dispatch => {
   try {
     const response = await getComments(postId)
     const comments = response.data
-    return dispatch(fetchCommentsSuccess(comments))
+    return dispatch(fetchCommentsSuccess({ comments }))
   } catch (exception) {
     const error = exception.message
     return dispatch(fetchCommentsFailure({ error }))
