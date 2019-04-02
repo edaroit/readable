@@ -1,0 +1,43 @@
+@import "../../stylesheets/_variables";
+
+.dashboard {
+  margin: 5rem auto;
+  padding: 1rem;
+  width: 920px;
+
+  &__title {
+    font-size: 2.5rem;
+  }
+  
+  &__categories {
+    margin-top: 1.5rem;
+    width: 50%;
+  }
+
+  &__buttons {
+    margin-top: 1rem;
+  }
+
+  &__posts {
+    margin-top: 1.5rem;
+  }
+}
+
+.post {
+  padding: 2rem;
+  background: $white;
+
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__sub-title {
+    opacity: 0.6;
+  }
+
+  &__body {
+    padding: 2rem 0;
+    text-align: justify;
+  }
+}
