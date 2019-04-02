@@ -8,6 +8,8 @@ import {
   voteCommentFailure,
   updateCommentSuccess,
   updateCommentFailure,
+  deleteCommentSuccess,
+  deleteCommentFailure,
 } from 'actions/comments'
 
 const initialState = {
@@ -65,6 +67,16 @@ const reducer = handleActions(
       }),
     }),
     [updateCommentFailure]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [deleteCommentSuccess]: (state, action) => ({
+      ...state,
+      comments: state.comments.filter(
+        comment => comment.id !== action.payload.comment.id,
+      ),
+    }),
+    [deleteCommentFailure]: (state, action) => ({
       ...state,
       ...action.payload,
     }),

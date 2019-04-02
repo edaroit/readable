@@ -3,6 +3,7 @@ import {
   getComments,
   postComment,
   patchComment,
+  removeComment,
 } from 'utils/api'
 
 export const fetchCommentsSuccess = createAction('FETCH_COMMENTS_SUCCESS')
@@ -13,6 +14,8 @@ export const voteCommentSuccess = createAction('VOTE_COMMENT_SUCCESS')
 export const voteCommentFailure = createAction('VOTE_COMMENT_FAILURE')
 export const updateCommentSuccess = createAction('UPDATE_COMMENT_SUCCESS')
 export const updateCommentFailure = createAction('UPDATE_COMMENT_FAILURE')
+export const deleteCommentSuccess = createAction('DELETE_COMMENT_SUCCESS')
+export const deleteCommentFailure = createAction('DELETE_COMMENT_FAILURE')
 
 export const loadComments = postId => async dispatch => {
   try {
@@ -54,5 +57,16 @@ export const updateComment = (id, changes) => async dispatch => {
   } catch (exception) {
     const error = exception.message
     return dispatch(updateCommentFailure({ error }))
+  }
+}
+
+export const deleteComment = id => async dispatch => {
+  try {
+    await removeComment(id)
+    const comment = { id }
+    return dispatch(deleteCommentSuccess({ comment }))
+  } catch (exception) {
+    const error = exception.message
+    return dispatch(deleteCommentFailure({ error }))
   }
 }

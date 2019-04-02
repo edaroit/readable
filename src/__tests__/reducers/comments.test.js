@@ -197,4 +197,48 @@ describe('reducer', () => {
       expect(newState).toHaveProperty('error', error)
     })
   })
+
+  describe('deleteCommentSuccess', () => {
+    let comment
+    let payload
+
+    beforeAll(() => {
+      comment = { id: 0 }
+      payload = { comment }
+    })
+
+    it('should update state comments with payload content', () => {
+      const state = {
+        comments: [
+          {
+            id: 0,
+            body: 'Great match',
+            author: 'A Nice Guy',
+          },
+        ],
+      }
+      const newState = reducer(state, actions.deleteCommentSuccess(payload))
+
+      expect(newState).toHaveProperty('comments', [])
+    })
+  })
+
+  describe('deleteCommentFailure', () => {
+    let error
+    let payload
+
+    beforeAll(() => {
+      error = 'Something went wrong'
+      payload = { error }
+    })
+
+    it('should update state error with payload content', () => {
+      const state = {
+        error: undefined,
+      }
+      const newState = reducer(state, actions.deleteCommentFailure(payload))
+
+      expect(newState).toHaveProperty('error', error)
+    })
+  })
 })

@@ -46,3 +46,5 @@ export const postComment = (data, id) => {
 }
 
 export const patchComment = (id, data) => patch(`comments/${id}`, data)
+
+export const removeComment = id => remove(`comments/${id}`)
