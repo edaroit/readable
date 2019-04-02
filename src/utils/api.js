@@ -37,3 +37,5 @@ export const postPost = (data, id) => {
 export const patchPost = (id, data) => patch(`posts/${id}`, data)
 
 export const removePost = id => remove(`posts/${id}`)
+
+export const getComments = postId => get(`posts/${postId}/comments`)
