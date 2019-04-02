@@ -16,7 +16,7 @@ export const loadPosts = () => async dispatch => {
   try {
     const response = await getPosts()
     const posts = response.data
-    return dispatch(fetchPostsSuccess({ posts }))
+    return dispatch(fetchPostsSuccess(posts))
   } catch (exception) {
     const error = exception.message
     return dispatch(fetchPostsFailure({ error }))
