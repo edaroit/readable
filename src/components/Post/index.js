@@ -7,7 +7,7 @@ import { formatDate } from 'utils/formatter'
 import './post.scss'
 
 const Post = ({ id, title, author, timestamp, category, body }) => (
-  <section className="flex flex-column post" key={id}>
+  <article className="flex flex-column post" key={id}>
     <h3 className="post__title">{title}</h3>
     <div className="flex items-center">
       <div className="flex justify-between post__information">
@@ -22,7 +22,7 @@ const Post = ({ id, title, author, timestamp, category, body }) => (
       <span>{body}</span>
     </div>
     <hr className="post__separator" />
-  </section>
+  </article>
 )
 
 export default Post

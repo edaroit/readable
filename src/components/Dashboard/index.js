@@ -26,22 +26,22 @@ const Dashboard = ({
   }, [])
 
   return (
-    <main className="dashboard">
-      <div className="flex justify-between items-center">
+    <div className="dashboard">
+      <header className="flex justify-between items-center">
         <Title>Readable</Title>
         <Button>New Post</Button>
-      </div>
-      <section className="dashboard__categories">
+      </header>
+      <aside className="dashboard__categories">
         {categories.map(category => (
           <Chip key={category.name}>{category.name}</Chip>
         ))}
-      </section>
-      <section className="dashboard__posts">
+      </aside>
+      <main className="dashboard__posts">
         {posts.map(post => (
           <Post {...post} />
         ))}
-      </section>
-    </main>
+      </main>
+    </div>
   )
 }
 
