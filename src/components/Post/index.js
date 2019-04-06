@@ -21,7 +21,6 @@ const Post = ({ id, title, author, timestamp, category, body }) => (
     <div className="post__body">
       <span>{body}</span>
     </div>
-    <hr className="post__separator" />
   </article>
 )
 

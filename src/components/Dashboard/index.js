@@ -38,7 +38,10 @@ const Dashboard = ({
       </aside>
       <main className="dashboard__posts">
         {posts.map(post => (
-          <Post {...post} />
+          <>
+            <Post {...post} />
+            <hr className="dashboard__separator" />
+          </>
         ))}
       </main>
     </div>
