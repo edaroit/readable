@@ -6,7 +6,15 @@ import { formatDate } from 'utils/formatter'
 
 import './post.scss'
 
-const Post = ({ id, title, author, timestamp, category, body }) => (
+const Post = ({
+  id,
+  title,
+  author,
+  timestamp,
+  category,
+  body,
+  commentCount,
+}) => (
   <article className="flex flex-column post" key={id}>
     <h3 className="post__title">{title}</h3>
     <div className="flex items-center">
@@ -21,6 +29,7 @@ const Post = ({ id, title, author, timestamp, category, body }) => (
     <div className="post__body">
       <span>{body}</span>
     </div>
+    <span className="post__responses">{commentCount} Responses</span>
   </article>
 )
 

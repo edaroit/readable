@@ -36,4 +36,10 @@
     text-align: justify;
     font-size: 1.25rem;
   }
+
+  &__responses {
+    color: $light-blue;
+    font-family: 'Raleway';
+    font-weight: 500;
+  }
 }
