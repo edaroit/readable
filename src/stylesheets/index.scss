@@ -1,0 +1,9 @@
+@import './flex.scss';
+@import './_variables.scss';
+
+body {
+  height: 100vh;
+  background-color: $dark-gray;
+  color: $white;
+  font-family: 'Georgia', serif;
+}

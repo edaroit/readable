@@ -8,7 +8,7 @@ export const loadCategories = () => async dispatch => {
   try {
     const response = await getCategories()
     const categories = response.data
-    return dispatch(fetchCategoriesSuccess({ categories }))
+    return dispatch(fetchCategoriesSuccess(categories))
   } catch (exception) {
     const error = exception.message
     return dispatch(fetchCategoriesFailure({ error }))

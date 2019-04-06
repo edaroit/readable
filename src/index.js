@@ -7,7 +7,7 @@ import reducer from 'reducers'
 import middleware from 'middlewares'
 import App from 'components/App'
 
-import 'stylesheets/_flex.scss'
+import 'stylesheets/index.scss'
 
 const store = createStore(reducer, middleware)
 

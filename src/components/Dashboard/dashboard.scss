@@ -1,0 +1,31 @@
+@import "../../stylesheets/_variables";
+
+.dashboard {
+  margin: 5rem auto;
+  padding: 1rem;
+  width: 920px;
+
+  &__categories {
+    padding: 3rem 0;
+    width: 50%;
+
+    & > .chip {
+      margin-left: 1.25rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__posts {
+    margin-top: 1.5rem;
+  }
+
+  &__separator {
+    color: $light-blue;
+    width: 100%;
+    opacity: 0.5;
+    margin-bottom: 2.5rem;
+  }
+}

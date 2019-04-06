@@ -1,0 +1,45 @@
+@import "../../stylesheets/_variables";
+
+.post {
+  margin-bottom: 2rem;
+
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: $light-blue;
+    font-family: 'Raleway';
+    font-weight: 900;
+  }
+
+  &__information {
+    width: 18%;
+  }
+
+  &__categories {
+    margin-left: 1.25rem;
+
+    & > .chip {
+      font-size: 0.75rem;
+      padding: 0 0.5rem;
+      line-height: 1rem;
+      height: 1rem;
+      cursor: default;
+    }
+  }
+
+  &__sub-title {
+    color: $gray;
+  }
+
+  &__body {
+    padding: 1rem 0;
+    text-align: justify;
+    font-size: 1.25rem;
+  }
+
+  &__responses {
+    color: $light-blue;
+    font-family: 'Raleway';
+    font-weight: 500;
+  }
+}
