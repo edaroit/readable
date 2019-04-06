@@ -1,6 +1,8 @@
 @import './flex.scss';
+@import './_variables.scss';
 
 body {
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: $dark-gray;
+  color: $white;
 }
