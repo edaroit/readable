@@ -3,15 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Button from 'components/Button'
-import Card from 'components/Card'
 import Chip from 'components/Chip'
+import Post from 'components/Post'
 
 import { loadCategories } from 'actions/categories'
 import { loadPosts } from 'actions/posts'
 import { getCategories } from 'selectors/categories'
 import { getPosts } from 'selectors/posts'
-
-import { formatDate } from 'utils/formatter'
 
 import './dashboard.scss'
 
@@ -39,18 +37,7 @@ const Dashboard = ({
       </section>
       <section className="dashboard__posts">
         {posts.map(post => (
-          <Card className="post" direction="column" key={post.id}>
-            <h3 className="post__title">{post.title}</h3>
-            <span className="post__sub-title">{post.author}</span>
-            <span className="post__sub-title">
-              {formatDate(post.timestamp)}
-            </span>
-            <span className="post__sub-title">{post.category}</span>
-            <div className="post__body">
-              <span>{post.body}</span>
-            </div>
-            <span>{post.voteScore} Vote Score</span>
-          </Card>
+          <Post {...post} />
         ))}
       </section>
     </main>
