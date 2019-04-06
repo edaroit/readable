@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import Button from 'components/Button'
 import Chip from 'components/Chip'
 import Post from 'components/Post'
+import Title from 'components/Title'
 
 import { loadCategories } from 'actions/categories'
 import { loadPosts } from 'actions/posts'
@@ -26,14 +27,14 @@ const Dashboard = ({
 
   return (
     <main className="dashboard">
-      <h1 className="dashboard__title">Readable</h1>
-      <section className="flex justify-between dashboard__categories">
+      <div className="flex justify-between items-center">
+        <Title>Readable</Title>
+        <Button>New Post</Button>
+      </div>
+      <section className="dashboard__categories">
         {categories.map(category => (
           <Chip key={category.name}>{category.name}</Chip>
         ))}
-      </section>
-      <section className="flex justify-end dashboard__buttons">
-        <Button>New Post</Button>
       </section>
       <section className="dashboard__posts">
         {posts.map(post => (
