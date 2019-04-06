@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -38,10 +38,10 @@ const Dashboard = ({
       </aside>
       <main className="dashboard__posts">
         {posts.map(post => (
-          <>
+          <Fragment key={post.id}>
             <Post {...post} />
             <hr className="dashboard__separator" />
-          </>
+          </Fragment>
         ))}
       </main>
     </div>
