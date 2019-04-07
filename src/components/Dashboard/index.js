@@ -113,7 +113,9 @@ const Dashboard = ({
     <div className="dashboard">
       <header className="flex justify-between items-center dashboard__header">
         <Title>readable</Title>
-        <Button>new post</Button>
+        <Link to="/new">
+          <Button>new post</Button>
+        </Link>
       </header>
       <Categories
         categories={categories}
