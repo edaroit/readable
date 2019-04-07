@@ -6,7 +6,7 @@
   width: 920px;
 
   &__categories {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
     width: 50%;
 
     & > .chip {
@@ -15,6 +15,14 @@
       &:first-child {
         margin-left: 0;
       }
+    }
+  }
+
+  &__sorts {
+    padding: 1.5rem 0;
+
+    & > .button-group:last-child {
+      margin-left: 2rem;
     }
   }
 

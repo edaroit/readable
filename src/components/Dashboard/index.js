@@ -1,8 +1,10 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import _ from 'lodash'
 
 import Button from 'components/Button'
+import ButtonGroup, { ButtonGroupItem } from 'components/ButtonGroup'
 import Chip from 'components/Chip'
 import Post from 'components/Post'
 import Title from 'components/Title'
@@ -20,6 +22,10 @@ const Dashboard = ({
   categories = [],
   posts = [],
 }) => {
+  const [field, setField] = useState('voteScore')
+  const [order, setOrder] = useState('asc')
+  const orderedPosts = _.orderBy(posts, [field], [order])
+
   useEffect(() => {
     loadCategories()
     loadPosts()
@@ -36,8 +42,38 @@ const Dashboard = ({
           <Chip key={category.name}>{category.name}</Chip>
         ))}
       </aside>
+      <aside className="flex dashboard__sorts">
+        <ButtonGroup>
+          <ButtonGroupItem
+            selected={field === 'voteScore'}
+            onClick={() => setField('voteScore')}
+          >
+            Vote Score
+          </ButtonGroupItem>
+          <ButtonGroupItem
+            selected={field === 'timestamp'}
+            onClick={() => setField('timestamp')}
+          >
+            Date
+          </ButtonGroupItem>
+        </ButtonGroup>
+        <ButtonGroup>
+          <ButtonGroupItem
+            selected={order === 'asc'}
+            onClick={() => setOrder('asc')}
+          >
+            Ascendent
+          </ButtonGroupItem>
+          <ButtonGroupItem
+            selected={order === 'desc'}
+            onClick={() => setOrder('desc')}
+          >
+            Descendent
+          </ButtonGroupItem>
+        </ButtonGroup>
+      </aside>
       <main className="dashboard__posts">
-        {posts.map(post => (
+        {orderedPosts.map(post => (
           <Fragment key={post.id}>
             <Post {...post} />
             <hr className="dashboard__separator" />
