@@ -17,8 +17,14 @@ import { getPosts } from 'selectors/posts'
 
 import './dashboard.scss'
 
+const ALL = 'all'
+const VOTE_SCORE = 'voteScore'
+const TIMESTAMP = 'timestamp'
+const ASC = 'asc'
+const DESC = 'desc'
+
 const verifyCategoryForPost = (post, category) => {
-  if (category == null || category === 'all') return true
+  if (category == null || category === ALL) return true
   return post.category === category
 }
 
@@ -29,10 +35,10 @@ const Dashboard = ({
   posts = [],
   match,
 }) => {
-  const [field, setField] = useState('voteScore')
-  const [order, setOrder] = useState('asc')
+  const [field, setField] = useState(VOTE_SCORE)
+  const [order, setOrder] = useState(ASC)
   const [selectedCategory, setSelectedCategory] = useState(
-    match.params.category || 'all',
+    match.params.category || ALL,
   )
   const selectedPosts = _.chain(posts)
     .filter(post => verifyCategoryForPost(post, selectedCategory))
@@ -53,8 +59,8 @@ const Dashboard = ({
       <aside className="dashboard__categories">
         <Link to="/">
           <Chip
-            selected={selectedCategory === 'all'}
-            onClick={() => setSelectedCategory('all')}
+            selected={selectedCategory === ALL}
+            onClick={() => setSelectedCategory(ALL)}
           >
             all
           </Chip>
@@ -73,28 +79,28 @@ const Dashboard = ({
       <aside className="flex dashboard__sorts">
         <ButtonGroup>
           <ButtonGroupItem
-            selected={field === 'voteScore'}
-            onClick={() => setField('voteScore')}
+            selected={field === VOTE_SCORE}
+            onClick={() => setField(VOTE_SCORE)}
           >
             Vote Score
           </ButtonGroupItem>
           <ButtonGroupItem
-            selected={field === 'timestamp'}
-            onClick={() => setField('timestamp')}
+            selected={field === TIMESTAMP}
+            onClick={() => setField(TIMESTAMP)}
           >
             Date
           </ButtonGroupItem>
         </ButtonGroup>
         <ButtonGroup>
           <ButtonGroupItem
-            selected={order === 'asc'}
-            onClick={() => setOrder('asc')}
+            selected={order === ASC}
+            onClick={() => setOrder(ASC)}
           >
             Ascendent
           </ButtonGroupItem>
           <ButtonGroupItem
-            selected={order === 'desc'}
-            onClick={() => setOrder('desc')}
+            selected={order === DESC}
+            onClick={() => setOrder(DESC)}
           >
             Descendent
           </ButtonGroupItem>
