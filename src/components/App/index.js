@@ -1,13 +1,14 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Dashboard from 'components/Dashboard'
 
 const App = () => (
   <Router>
-    <Route path="/">
-      <Dashboard />
-    </Route>
+    <Switch>
+      <Route exact path="/" component={Dashboard} />
+      <Route exact path="/:category/posts" component={Dashboard} />
+    </Switch>
   </Router>
 )
 

@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import _ from 'lodash'
@@ -16,15 +17,91 @@ import { getPosts } from 'selectors/posts'
 
 import './dashboard.scss'
 
+const ALL = 'all'
+const VOTE_SCORE = 'voteScore'
+const TIMESTAMP = 'timestamp'
+const ASC = 'asc'
+const DESC = 'desc'
+
+const verifyCategoryForPost = (post, category) => {
+  if (category == null || category === ALL) return true
+  return post.category === category
+}
+
+const Categories = ({ categories, selectedCategory, setSelectedCategory }) => (
+  <aside className="dashboard__categories">
+    <Link to="/">
+      <Chip
+        selected={selectedCategory === ALL}
+        onClick={() => setSelectedCategory(ALL)}
+      >
+        all
+      </Chip>
+    </Link>
+    {categories.map(category => (
+      <Link to={`/${category.name}/posts`} key={category.name}>
+        <Chip
+          selected={selectedCategory === category.name}
+          onClick={() => setSelectedCategory(category.name)}
+        >
+          {category.name}
+        </Chip>
+      </Link>
+    ))}
+  </aside>
+)
+
+const Sorts = ({ field, setField, order, setOrder }) => (
+  <aside className="flex dashboard__sorts">
+    <ButtonGroup>
+      <ButtonGroupItem
+        selected={field === VOTE_SCORE}
+        onClick={() => setField(VOTE_SCORE)}
+      >
+        Vote Score
+      </ButtonGroupItem>
+      <ButtonGroupItem
+        selected={field === TIMESTAMP}
+        onClick={() => setField(TIMESTAMP)}
+      >
+        Date
+      </ButtonGroupItem>
+    </ButtonGroup>
+    <ButtonGroup>
+      <ButtonGroupItem selected={order === ASC} onClick={() => setOrder(ASC)}>
+        Ascendent
+      </ButtonGroupItem>
+      <ButtonGroupItem selected={order === DESC} onClick={() => setOrder(DESC)}>
+        Descendent
+      </ButtonGroupItem>
+    </ButtonGroup>
+  </aside>
+)
+
+const Posts = ({ posts }) =>
+  posts.map(post => (
+    <Fragment key={post.id}>
+      <Post {...post} />
+      <hr className="dashboard__separator" />
+    </Fragment>
+  ))
+
 const Dashboard = ({
   loadCategories,
   loadPosts,
   categories = [],
   posts = [],
+  match,
 }) => {
-  const [field, setField] = useState('voteScore')
-  const [order, setOrder] = useState('asc')
-  const orderedPosts = _.orderBy(posts, [field], [order])
+  const [field, setField] = useState(VOTE_SCORE)
+  const [order, setOrder] = useState(ASC)
+  const [selectedCategory, setSelectedCategory] = useState(
+    match.params.category || ALL,
+  )
+  const selectedPosts = _.chain(posts)
+    .filter(post => verifyCategoryForPost(post, selectedCategory))
+    .orderBy([field], [order])
+    .value()
 
   useEffect(() => {
     loadCategories()
@@ -37,48 +114,19 @@ const Dashboard = ({
         <Title>Readable</Title>
         <Button>New Post</Button>
       </header>
-      <aside className="dashboard__categories">
-        {categories.map(category => (
-          <Chip key={category.name}>{category.name}</Chip>
-        ))}
-      </aside>
-      <aside className="flex dashboard__sorts">
-        <ButtonGroup>
-          <ButtonGroupItem
-            selected={field === 'voteScore'}
-            onClick={() => setField('voteScore')}
-          >
-            Vote Score
-          </ButtonGroupItem>
-          <ButtonGroupItem
-            selected={field === 'timestamp'}
-            onClick={() => setField('timestamp')}
-          >
-            Date
-          </ButtonGroupItem>
-        </ButtonGroup>
-        <ButtonGroup>
-          <ButtonGroupItem
-            selected={order === 'asc'}
-            onClick={() => setOrder('asc')}
-          >
-            Ascendent
-          </ButtonGroupItem>
-          <ButtonGroupItem
-            selected={order === 'desc'}
-            onClick={() => setOrder('desc')}
-          >
-            Descendent
-          </ButtonGroupItem>
-        </ButtonGroup>
-      </aside>
+      <Categories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
+      <Sorts
+        field={field}
+        setField={setField}
+        order={order}
+        setOrder={setOrder}
+      />
       <main className="dashboard__posts">
-        {orderedPosts.map(post => (
-          <Fragment key={post.id}>
-            <Post {...post} />
-            <hr className="dashboard__separator" />
-          </Fragment>
-        ))}
+        <Posts posts={selectedPosts} />
       </main>
     </div>
   )

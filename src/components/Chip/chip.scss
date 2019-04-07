@@ -4,7 +4,8 @@
   height: 2rem;
   line-height: 2rem;
   display: inline-block;
-  background: $gray;
+  border: 1px solid $light-blue;
+  color: $light-blue;
   padding: 0 1rem;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -14,5 +15,10 @@
   
   &:hover {
     background: $gray;
+  }
+
+  &--selected {
+    background: $light-blue;
+    color: $white;
   }
 }
