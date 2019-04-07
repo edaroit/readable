@@ -5,6 +5,8 @@ import Dashboard from 'components/Dashboard'
 import NewPost from 'components/NewPost'
 import PostPage from 'components/PostPage'
 
+import './app.scss'
+
 const App = () => (
   <Router>
     <Switch>
