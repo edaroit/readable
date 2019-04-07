@@ -9,6 +9,7 @@ import ButtonGroup, { ButtonGroupItem } from 'components/ButtonGroup'
 import Chip from 'components/Chip'
 import Header from 'components/Header'
 import Post from 'components/Post'
+import Separator from 'components/Separator'
 
 import { loadCategories } from 'actions/categories'
 import { loadPosts, votePost } from 'actions/posts'
@@ -82,7 +83,7 @@ const Posts = ({ posts, onVote }) =>
   posts.map(post => (
     <Fragment key={post.id}>
       <Post {...post} onVote={onVote} />
-      <hr className="dashboard__separator" />
+      <Separator />
     </Fragment>
   ))
 

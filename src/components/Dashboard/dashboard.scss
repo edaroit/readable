@@ -20,15 +20,4 @@
   &__posts {
     margin-top: 1.5rem;
   }
-
-  &__separator {
-    color: $light-blue;
-    width: 100%;
-    opacity: 0.5;
-    margin-bottom: 2.5rem;
-
-    &:last-child {
-      display: none;
-    }
-  }
 }
