@@ -10,7 +10,6 @@ import { getPostById } from 'selectors/posts'
 const PostPage = ({ post }) => (
   <Fragment>
     <Header
-      title="readable"
       buttons={
         <Link to="/">
           <Button secondary>cancel</Button>

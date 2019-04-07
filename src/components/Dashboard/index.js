@@ -112,7 +112,6 @@ const Dashboard = ({
   return (
     <div className="dashboard">
       <Header
-        title="readable"
         buttons={
           <Link to="/new">
             <Button>new post</Button>

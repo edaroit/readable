@@ -45,7 +45,6 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
   ) : (
     <Fragment>
       <Header
-        title="readable"
         buttons={
           <Fragment>
             <Link to="/">
