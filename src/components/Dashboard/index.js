@@ -27,10 +27,13 @@ const Dashboard = ({
   loadPosts,
   categories = [],
   posts = [],
+  match,
 }) => {
   const [field, setField] = useState('voteScore')
   const [order, setOrder] = useState('asc')
-  const [selectedCategory, setSelectedCategory] = useState()
+  const [selectedCategory, setSelectedCategory] = useState(
+    match.params.category,
+  )
   const selectedPosts = _.chain(posts)
     .filter(post => verifyCategoryForPost(post, selectedCategory))
     .orderBy([field], [order])

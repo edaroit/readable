@@ -6,12 +6,8 @@ import Dashboard from 'components/Dashboard'
 const App = () => (
   <Router>
     <Switch>
-      <Route exact path="/">
-        <Dashboard />
-      </Route>
-      <Route exact path="/:category/posts">
-        <Dashboard />
-      </Route>
+      <Route exact path="/" component={Dashboard} />
+      <Route exact path="/:category/posts" component={Dashboard} />
     </Switch>
   </Router>
 )
