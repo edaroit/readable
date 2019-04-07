@@ -4,16 +4,23 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Button from 'components/Button'
+import Comment from 'components/Comment'
 import Header from 'components/Header'
 import Post from 'components/Post'
 
+import { loadComments } from 'actions/comments'
 import { loadPosts } from 'actions/posts'
+import { getComments } from 'selectors/comments'
 import { getPostById } from 'selectors/posts'
 
-const PostPage = ({ loadPosts, post = {} }) => {
+const PostPage = ({ loadComments, loadPosts, comments = [], post = {} }) => {
   useEffect(() => {
     loadPosts()
   }, [])
+
+  useEffect(() => {
+    loadComments(post.id)
+  }, [post])
 
   return (
     <Fragment>
@@ -25,13 +32,17 @@ const PostPage = ({ loadPosts, post = {} }) => {
         }
       />
       <Post {...post} />
+      {comments.map(comment => (
+        <Comment key={comment.id} {...comment} />
+      ))}
     </Fragment>
   )
 }
 
 export default connect(
   (state, { match }) => ({
+    comments: getComments(state),
     post: getPostById(state, match.params.id),
   }),
-  dispatch => bindActionCreators({ loadPosts }, dispatch),
+  dispatch => bindActionCreators({ loadComments, loadPosts }, dispatch),
 )(PostPage)
