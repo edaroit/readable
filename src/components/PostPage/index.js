@@ -14,6 +14,8 @@ import { loadPosts } from 'actions/posts'
 import { getComments } from 'selectors/comments'
 import { getPostById } from 'selectors/posts'
 
+import './post-page.scss'
+
 const PostPage = ({
   loadComments,
   loadPosts,
@@ -39,6 +41,7 @@ const PostPage = ({
         }
       />
       <Post {...post} />
+      <h3 className="post-page__comments">{comments.length} responses</h3>
       {comments.map(comment => (
         <Fragment key={comment.id}>
           <Comment {...comment} onVote={voteComment} />
