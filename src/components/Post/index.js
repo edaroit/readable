@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import Chip from 'components/Chip'
 import Vote from 'components/Vote'
@@ -20,7 +21,9 @@ const Post = ({
 }) => (
   <article className="flex post" key={id}>
     <section className="flex flex-column flex-auto">
-      <h3 className="post__title">{title}</h3>
+      <Link to={`${category}/${id}`}>
+        <h3 className="post__title">{title}</h3>
+      </Link>
       <div className="flex items-center">
         <div className="flex justify-between post__information">
           <span className="post__sub-title">{author}</span>
