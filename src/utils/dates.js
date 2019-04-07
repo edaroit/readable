@@ -6,3 +6,5 @@ export const createDate = (stringDate, options = {}) => {
   if (timezone === 'utc') return moment.utc(stringDate)
   return moment(stringDate)
 }
+
+export const timestampNow = () => Date.now()

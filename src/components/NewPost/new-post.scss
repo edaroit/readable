@@ -1,0 +1,29 @@
+@import "../../stylesheets/_variables";
+
+.new-post {
+  &__input {
+    background: transparent;
+    color: $light-blue;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 1rem 0;
+
+    &--title {
+      font-size: 2rem;
+    }
+
+    &--body {
+      word-break: break-word;
+    }
+  }
+
+  &__categories {
+    padding: 1rem 0;
+
+    .chip {
+      margin-right: 1.25rem;
+    }
+  }
+}

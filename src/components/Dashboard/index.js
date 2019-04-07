@@ -7,8 +7,8 @@ import _ from 'lodash'
 import Button from 'components/Button'
 import ButtonGroup, { ButtonGroupItem } from 'components/ButtonGroup'
 import Chip from 'components/Chip'
+import Header from 'components/Header'
 import Post from 'components/Post'
-import Title from 'components/Title'
 
 import { loadCategories } from 'actions/categories'
 import { loadPosts, votePost } from 'actions/posts'
@@ -78,10 +78,10 @@ const Sorts = ({ field, setField, order, setOrder }) => (
   </aside>
 )
 
-const Posts = ({ posts, vote }) =>
+const Posts = ({ posts, onVote }) =>
   posts.map(post => (
     <Fragment key={post.id}>
-      <Post {...post} vote={vote} />
+      <Post {...post} onVote={onVote} />
       <hr className="dashboard__separator" />
     </Fragment>
   ))
@@ -111,10 +111,14 @@ const Dashboard = ({
 
   return (
     <div className="dashboard">
-      <header className="flex justify-between items-center dashboard__header">
-        <Title>readable</Title>
-        <Button>new post</Button>
-      </header>
+      <Header
+        title="readable"
+        buttons={
+          <Link to="/new">
+            <Button>new post</Button>
+          </Link>
+        }
+      />
       <Categories
         categories={categories}
         selectedCategory={selectedCategory}
@@ -127,7 +131,7 @@ const Dashboard = ({
         setOrder={setOrder}
       />
       <main className="dashboard__posts">
-        <Posts posts={selectedPosts} vote={votePost} />
+        <Posts posts={selectedPosts} onVote={votePost} />
       </main>
     </div>
   )

@@ -1,17 +1,8 @@
 @import "../../stylesheets/_variables";
 
 .dashboard {
-  margin: 5rem auto;
-  padding: 1rem;
-  width: 920px;
-
-  &__header {
-    margin-bottom: 1.5rem;
-  }
-
   &__categories {
     padding: 1rem 0;
-    width: 50%;
 
     .chip {
       margin-right: 1.25rem;

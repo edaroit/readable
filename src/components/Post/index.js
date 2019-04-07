@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
 
-import ButtonGroup, { ButtonGroupItem } from 'components/ButtonGroup'
 import Chip from 'components/Chip'
+import Vote from 'components/Vote'
 
 import { formatDate } from 'utils/formatter'
 
@@ -18,7 +16,7 @@ const Post = ({
   body,
   commentCount,
   voteScore,
-  vote = () => {},
+  onVote = () => {},
 }) => (
   <article className="flex post" key={id}>
     <section className="flex flex-column flex-auto">
@@ -28,26 +26,18 @@ const Post = ({
           <span className="post__sub-title">{author}</span>
           <span className="post__sub-title">{formatDate(timestamp)}</span>
         </div>
-        <div className="flex post__categories">
-          <Chip key={category}>{category}</Chip>
-        </div>
+        {category && (
+          <div className="flex post__categories">
+            <Chip key={category}>{category}</Chip>
+          </div>
+        )}
       </div>
       <div className="post__body">
         <span>{body}</span>
       </div>
       <span className="post__responses">{commentCount} Responses</span>
     </section>
-    <aside className="flex flex-column items-center justify-center">
-      <ButtonGroup direction="column">
-        <ButtonGroupItem onClick={() => vote(id, 'upVote')}>
-          like
-        </ButtonGroupItem>
-        <ButtonGroupItem selected>{voteScore}</ButtonGroupItem>
-        <ButtonGroupItem onClick={() => vote(id, 'downVote')}>
-          dislike
-        </ButtonGroupItem>
-      </ButtonGroup>
-    </aside>
+    <Vote id={id} voteScore={voteScore} onVote={onVote} />
   </article>
 )
 

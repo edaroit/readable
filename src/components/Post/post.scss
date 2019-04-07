@@ -12,12 +12,12 @@
   }
 
   &__information {
-    width: 20%;
+    span {
+      margin-right: 1rem
+    }
   }
 
   &__categories {
-    margin-left: 1.25rem;
-
     & > .chip {
       font-size: 0.75rem;
       padding: 0 0.5rem;
@@ -35,6 +35,10 @@
     padding: 1rem 0;
     text-align: justify;
     font-size: 1.25rem;
+    display: block;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__responses {
