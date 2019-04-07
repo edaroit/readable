@@ -28,9 +28,11 @@ const Post = ({
           <span className="post__sub-title">{author}</span>
           <span className="post__sub-title">{formatDate(timestamp)}</span>
         </div>
-        <div className="flex post__categories">
-          <Chip key={category}>{category}</Chip>
-        </div>
+        {category && (
+          <div className="flex post__categories">
+            <Chip key={category}>{category}</Chip>
+          </div>
+        )}
       </div>
       <div className="post__body">
         <span>{body}</span>
