@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import _ from 'lodash'
@@ -16,6 +17,11 @@ import { getPosts } from 'selectors/posts'
 
 import './dashboard.scss'
 
+const verifyCategoryForPost = (post, category) => {
+  if (category == null) return true
+  return post.category === category
+}
+
 const Dashboard = ({
   loadCategories,
   loadPosts,
@@ -24,7 +30,11 @@ const Dashboard = ({
 }) => {
   const [field, setField] = useState('voteScore')
   const [order, setOrder] = useState('asc')
-  const orderedPosts = _.orderBy(posts, [field], [order])
+  const [selectedCategory, setSelectedCategory] = useState()
+  const selectedPosts = _.chain(posts)
+    .filter(post => verifyCategoryForPost(post, selectedCategory))
+    .orderBy([field], [order])
+    .value()
 
   useEffect(() => {
     loadCategories()
@@ -39,7 +49,14 @@ const Dashboard = ({
       </header>
       <aside className="dashboard__categories">
         {categories.map(category => (
-          <Chip key={category.name}>{category.name}</Chip>
+          <Link to={`/${category.name}/posts`} key={category.name}>
+            <Chip
+              selected={category.name === selectedCategory}
+              onClick={() => setSelectedCategory(category.name)}
+            >
+              {category.name}
+            </Chip>
+          </Link>
         ))}
       </aside>
       <aside className="flex dashboard__sorts">
@@ -73,7 +90,7 @@ const Dashboard = ({
         </ButtonGroup>
       </aside>
       <main className="dashboard__posts">
-        {orderedPosts.map(post => (
+        {selectedPosts.map(post => (
           <Fragment key={post.id}>
             <Post {...post} />
             <hr className="dashboard__separator" />
