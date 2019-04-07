@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
 
 import Chip from 'components/Chip'
@@ -14,6 +16,8 @@ const Post = ({
   category,
   body,
   commentCount,
+  voteScore,
+  vote = () => {},
 }) => (
   <article className="flex flex-column post" key={id}>
     <h3 className="post__title">{title}</h3>
@@ -30,6 +34,9 @@ const Post = ({
       <span>{body}</span>
     </div>
     <span className="post__responses">{commentCount} Responses</span>
+    <span className="post__responses">{voteScore}</span>
+    <span onClick={() => vote(id, 'upVote')}>Like</span>
+    <span onClick={() => vote(id, 'downVote')}>Dislike</span>
   </article>
 )
 

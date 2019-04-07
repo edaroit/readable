@@ -11,7 +11,7 @@ import Post from 'components/Post'
 import Title from 'components/Title'
 
 import { loadCategories } from 'actions/categories'
-import { loadPosts } from 'actions/posts'
+import { loadPosts, votePost } from 'actions/posts'
 import { getCategories } from 'selectors/categories'
 import { getPosts } from 'selectors/posts'
 
@@ -78,10 +78,10 @@ const Sorts = ({ field, setField, order, setOrder }) => (
   </aside>
 )
 
-const Posts = ({ posts }) =>
+const Posts = ({ posts, vote }) =>
   posts.map(post => (
     <Fragment key={post.id}>
-      <Post {...post} />
+      <Post {...post} vote={vote} />
       <hr className="dashboard__separator" />
     </Fragment>
   ))
@@ -89,6 +89,7 @@ const Posts = ({ posts }) =>
 const Dashboard = ({
   loadCategories,
   loadPosts,
+  votePost,
   categories = [],
   posts = [],
   match,
@@ -126,7 +127,7 @@ const Dashboard = ({
         setOrder={setOrder}
       />
       <main className="dashboard__posts">
-        <Posts posts={selectedPosts} />
+        <Posts posts={selectedPosts} vote={votePost} />
       </main>
     </div>
   )
@@ -142,6 +143,7 @@ export default connect(
       {
         loadCategories,
         loadPosts,
+        votePost,
       },
       dispatch,
     ),
