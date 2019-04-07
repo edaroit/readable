@@ -22,9 +22,9 @@ const Dashboard = ({
   categories = [],
   posts = [],
 }) => {
-  const [sort, setSort] = useState('voteScore')
+  const [field, setField] = useState('voteScore')
   const [order, setOrder] = useState('asc')
-  const sortedPosts = _.orderBy(posts, [sort], [order])
+  const orderedPosts = _.orderBy(posts, [field], [order])
 
   useEffect(() => {
     loadCategories()
@@ -46,14 +46,14 @@ const Dashboard = ({
         <div>
           <ButtonGroup>
             <ButtonGroupItem
-              selected={sort === 'voteScore'}
-              onClick={() => setSort('voteScore')}
+              selected={field === 'voteScore'}
+              onClick={() => setField('voteScore')}
             >
               Vote Score
             </ButtonGroupItem>
             <ButtonGroupItem
-              selected={sort === 'timestamp'}
-              onClick={() => setSort('timestamp')}
+              selected={field === 'timestamp'}
+              onClick={() => setField('timestamp')}
             >
               Date
             </ButtonGroupItem>
@@ -77,7 +77,7 @@ const Dashboard = ({
         </div>
       </aside>
       <main className="dashboard__posts">
-        {sortedPosts.map(post => (
+        {orderedPosts.map(post => (
           <Fragment key={post.id}>
             <Post {...post} />
             <hr className="dashboard__separator" />
