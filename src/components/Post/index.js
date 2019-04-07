@@ -19,7 +19,7 @@ const Post = ({
   voteScore,
   onVote = () => {},
 }) => (
-  <article className="flex post" key={id}>
+  <article className="flex post">
     <section className="flex flex-column flex-auto">
       <Link to={`${category}/${id}`}>
         <h3 className="post__title">{title}</h3>
