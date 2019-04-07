@@ -43,38 +43,34 @@ const Dashboard = ({
         ))}
       </aside>
       <aside className="flex dashboard__sorts">
-        <div>
-          <ButtonGroup>
-            <ButtonGroupItem
-              selected={field === 'voteScore'}
-              onClick={() => setField('voteScore')}
-            >
-              Vote Score
-            </ButtonGroupItem>
-            <ButtonGroupItem
-              selected={field === 'timestamp'}
-              onClick={() => setField('timestamp')}
-            >
-              Date
-            </ButtonGroupItem>
-          </ButtonGroup>
-        </div>
-        <div>
-          <ButtonGroup>
-            <ButtonGroupItem
-              selected={order === 'asc'}
-              onClick={() => setOrder('asc')}
-            >
-              Ascendent
-            </ButtonGroupItem>
-            <ButtonGroupItem
-              selected={order === 'desc'}
-              onClick={() => setOrder('desc')}
-            >
-              Descendent
-            </ButtonGroupItem>
-          </ButtonGroup>
-        </div>
+        <ButtonGroup>
+          <ButtonGroupItem
+            selected={field === 'voteScore'}
+            onClick={() => setField('voteScore')}
+          >
+            Vote Score
+          </ButtonGroupItem>
+          <ButtonGroupItem
+            selected={field === 'timestamp'}
+            onClick={() => setField('timestamp')}
+          >
+            Date
+          </ButtonGroupItem>
+        </ButtonGroup>
+        <ButtonGroup>
+          <ButtonGroupItem
+            selected={order === 'asc'}
+            onClick={() => setOrder('asc')}
+          >
+            Ascendent
+          </ButtonGroupItem>
+          <ButtonGroupItem
+            selected={order === 'desc'}
+            onClick={() => setOrder('desc')}
+          >
+            Descendent
+          </ButtonGroupItem>
+        </ButtonGroup>
       </aside>
       <main className="dashboard__posts">
         {orderedPosts.map(post => (
