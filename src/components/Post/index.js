@@ -17,6 +17,7 @@ const Post = ({
   category,
   body,
   commentCount,
+  voteScore,
   vote = () => {},
 }) => (
   <article className="flex post" key={id}>
@@ -41,6 +42,7 @@ const Post = ({
         <ButtonGroupItem onClick={() => vote(id, 'upVote')}>
           like
         </ButtonGroupItem>
+        <ButtonGroupItem selected>{voteScore}</ButtonGroupItem>
         <ButtonGroupItem onClick={() => vote(id, 'downVote')}>
           dislike
         </ButtonGroupItem>
