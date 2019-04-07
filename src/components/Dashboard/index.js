@@ -7,8 +7,8 @@ import _ from 'lodash'
 import Button from 'components/Button'
 import ButtonGroup, { ButtonGroupItem } from 'components/ButtonGroup'
 import Chip from 'components/Chip'
+import Header from 'components/Header'
 import Post from 'components/Post'
-import Title from 'components/Title'
 
 import { loadCategories } from 'actions/categories'
 import { loadPosts, votePost } from 'actions/posts'
@@ -111,12 +111,14 @@ const Dashboard = ({
 
   return (
     <div className="dashboard">
-      <header className="flex justify-between items-center dashboard__header">
-        <Title>readable</Title>
-        <Link to="/new">
-          <Button>new post</Button>
-        </Link>
-      </header>
+      <Header
+        title="readable"
+        buttons={
+          <Link to="/new">
+            <Button>new post</Button>
+          </Link>
+        }
+      />
       <Categories
         categories={categories}
         selectedCategory={selectedCategory}

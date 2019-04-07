@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -6,7 +6,7 @@ import uuid from 'uuid/v4'
 
 import Button from 'components/Button'
 import Chip from 'components/Chip'
-import Title from 'components/Title'
+import Header from 'components/Header'
 
 import { savePost } from 'actions/posts'
 import { loadCategories } from 'actions/categories'
@@ -44,15 +44,18 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
     <Redirect to="/" />
   ) : (
     <form className="flex flex-column" onSubmit={handleSubmit}>
-      <header className="flex justify-between">
-        <Title>readable</Title>
-        <div className="flex justify-between new-post__buttons">
-          <Link to="/">
-            <Button secondary>cancel</Button>
-          </Link>
-          <Button type="submit">publish</Button>
-        </div>
-      </header>
+      <Header
+        title="readable"
+        buttons={
+          <Fragment>
+            <Link to="/">
+              <Button secondary>cancel</Button>
+            </Link>
+            <Button type="submit">publish</Button>
+          </Fragment>
+        }
+        justifyButtons="between"
+      />
       <article className="flex flex-column new-post">
         <input
           className="new-post__input new-post__input--title"
