@@ -23,7 +23,8 @@ const Dashboard = ({
   posts = [],
 }) => {
   const [sort, setSort] = useState('voteScore')
-  const sortedPosts = _.orderBy(posts, [sort], ['desc'])
+  const [order, setOrder] = useState('asc')
+  const sortedPosts = _.orderBy(posts, [sort], [order])
 
   useEffect(() => {
     loadCategories()
@@ -41,21 +42,39 @@ const Dashboard = ({
           <Chip key={category.name}>{category.name}</Chip>
         ))}
       </aside>
-      <aside className="dashboard__sorts">
-        <ButtonGroup>
-          <ButtonGroupItem
-            selected={sort === 'voteScore'}
-            onClick={() => setSort('voteScore')}
-          >
-            Vote Score
-          </ButtonGroupItem>
-          <ButtonGroupItem
-            selected={sort === 'timestamp'}
-            onClick={() => setSort('timestamp')}
-          >
-            Date
-          </ButtonGroupItem>
-        </ButtonGroup>
+      <aside className="flex dashboard__sorts">
+        <div>
+          <ButtonGroup>
+            <ButtonGroupItem
+              selected={sort === 'voteScore'}
+              onClick={() => setSort('voteScore')}
+            >
+              Vote Score
+            </ButtonGroupItem>
+            <ButtonGroupItem
+              selected={sort === 'timestamp'}
+              onClick={() => setSort('timestamp')}
+            >
+              Date
+            </ButtonGroupItem>
+          </ButtonGroup>
+        </div>
+        <div>
+          <ButtonGroup>
+            <ButtonGroupItem
+              selected={order === 'asc'}
+              onClick={() => setOrder('asc')}
+            >
+              Ascendent
+            </ButtonGroupItem>
+            <ButtonGroupItem
+              selected={order === 'desc'}
+              onClick={() => setOrder('desc')}
+            >
+              Descendent
+            </ButtonGroupItem>
+          </ButtonGroup>
+        </div>
       </aside>
       <main className="dashboard__posts">
         {sortedPosts.map(post => (

@@ -20,6 +20,10 @@
 
   &__sorts {
     padding: 1.5rem 0;
+
+    & > div:last-child {
+      margin-left: 2rem;
+    }
   }
 
   &__posts {
