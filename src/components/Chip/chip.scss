@@ -16,4 +16,9 @@
   &:hover {
     background: $gray;
   }
+
+  &--selected {
+    background: $light-blue;
+    color: $white;
+  }
 }
