@@ -11,7 +11,7 @@ import Post from 'components/Post'
 import Title from 'components/Title'
 
 import { loadCategories } from 'actions/categories'
-import { loadPosts } from 'actions/posts'
+import { loadPosts, votePost } from 'actions/posts'
 import { getCategories } from 'selectors/categories'
 import { getPosts } from 'selectors/posts'
 
@@ -58,30 +58,30 @@ const Sorts = ({ field, setField, order, setOrder }) => (
         selected={field === VOTE_SCORE}
         onClick={() => setField(VOTE_SCORE)}
       >
-        Vote Score
+        vote score
       </ButtonGroupItem>
       <ButtonGroupItem
         selected={field === TIMESTAMP}
         onClick={() => setField(TIMESTAMP)}
       >
-        Date
+        date
       </ButtonGroupItem>
     </ButtonGroup>
     <ButtonGroup>
       <ButtonGroupItem selected={order === ASC} onClick={() => setOrder(ASC)}>
-        Ascendent
+        ascendent
       </ButtonGroupItem>
       <ButtonGroupItem selected={order === DESC} onClick={() => setOrder(DESC)}>
-        Descendent
+        descendent
       </ButtonGroupItem>
     </ButtonGroup>
   </aside>
 )
 
-const Posts = ({ posts }) =>
+const Posts = ({ posts, vote }) =>
   posts.map(post => (
     <Fragment key={post.id}>
-      <Post {...post} />
+      <Post {...post} vote={vote} />
       <hr className="dashboard__separator" />
     </Fragment>
   ))
@@ -89,6 +89,7 @@ const Posts = ({ posts }) =>
 const Dashboard = ({
   loadCategories,
   loadPosts,
+  votePost,
   categories = [],
   posts = [],
   match,
@@ -110,9 +111,9 @@ const Dashboard = ({
 
   return (
     <div className="dashboard">
-      <header className="flex justify-between items-center">
-        <Title>Readable</Title>
-        <Button>New Post</Button>
+      <header className="flex justify-between items-center dashboard__header">
+        <Title>readable</Title>
+        <Button>new post</Button>
       </header>
       <Categories
         categories={categories}
@@ -126,7 +127,7 @@ const Dashboard = ({
         setOrder={setOrder}
       />
       <main className="dashboard__posts">
-        <Posts posts={selectedPosts} />
+        <Posts posts={selectedPosts} vote={votePost} />
       </main>
     </div>
   )
@@ -142,6 +143,7 @@ export default connect(
       {
         loadCategories,
         loadPosts,
+        votePost,
       },
       dispatch,
     ),

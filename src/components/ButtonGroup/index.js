@@ -20,12 +20,14 @@ export const ButtonGroupItem = ({ selected, onClick, children }) => (
   </div>
 )
 
-const ButtonGroup = ({ className, children }) => (
+const ButtonGroup = ({ className, direction = 'row', children }) => (
   <div
     className={cn(
       'flex',
+      `flex-${direction}`,
       'justify-between',
       'button-group',
+      `button-group--${direction}`,
       className && className,
     )}
   >

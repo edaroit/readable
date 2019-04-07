@@ -42,7 +42,7 @@ export const voteComment = (id, option) => async dispatch => {
   try {
     await postComment(option, id)
     const comment = { id, option }
-    return dispatch(voteCommentSuccess(comment))
+    return dispatch(voteCommentSuccess({ comment }))
   } catch (exception) {
     const error = exception.message
     return dispatch(voteCommentFailure({ error }))

@@ -35,9 +35,9 @@ export const savePost = post => async dispatch => {
 
 export const votePost = (id, option) => async dispatch => {
   try {
-    await postPost(option, id)
+    await postPost({ option }, id)
     const post = { id, option }
-    return dispatch(votePostSuccess(post))
+    return dispatch(votePostSuccess({ post }))
   } catch (exception) {
     const error = exception.message
     return dispatch(votePostFailure({ error }))

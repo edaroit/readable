@@ -30,7 +30,10 @@ export const getCategories = () => get('categories')
 export const getPosts = () => get('posts')
 
 export const postPost = (data, id) => {
-  if (id) post(`posts/${id}`, data)
+  if (id) {
+    post(`posts/${id}`, data)
+    return
+  }
   post('posts', data)
 }
 
@@ -41,7 +44,10 @@ export const removePost = id => remove(`posts/${id}`)
 export const getComments = postId => get(`posts/${postId}/comments`)
 
 export const postComment = (data, id) => {
-  if (id) post(`comments/${id}`, data)
+  if (id) {
+    post(`comments/${id}`, data)
+    return
+  }
   post('comments', data)
 }
 
