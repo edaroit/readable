@@ -7,6 +7,7 @@ import Button from 'components/Button'
 import Comment from 'components/Comment'
 import Header from 'components/Header'
 import Post from 'components/Post'
+import Separator from 'components/Separator'
 
 import { loadComments, voteComment } from 'actions/comments'
 import { loadPosts } from 'actions/posts'
@@ -39,7 +40,10 @@ const PostPage = ({
       />
       <Post {...post} />
       {comments.map(comment => (
-        <Comment key={comment.id} {...comment} onVote={voteComment} />
+        <Fragment key={comment.id}>
+          <Comment {...comment} onVote={voteComment} />
+          <Separator />
+        </Fragment>
       ))}
     </Fragment>
   )
