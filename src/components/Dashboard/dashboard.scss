@@ -6,7 +6,7 @@
   width: 920px;
 
   &__categories {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
     width: 50%;
 
     & > .chip {
@@ -16,6 +16,10 @@
         margin-left: 0;
       }
     }
+  }
+
+  &__sorts {
+    padding: 1.5rem 0;
   }
 
   &__posts {

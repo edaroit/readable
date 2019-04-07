@@ -1,8 +1,10 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import _ from 'lodash'
 
 import Button from 'components/Button'
+import ButtonGroup, { ButtonGroupItem } from 'components/ButtonGroup'
 import Chip from 'components/Chip'
 import Post from 'components/Post'
 import Title from 'components/Title'
@@ -20,6 +22,9 @@ const Dashboard = ({
   categories = [],
   posts = [],
 }) => {
+  const [sort, setSort] = useState('voteScore')
+  const sortedPosts = _.orderBy(posts, [sort], ['desc'])
+
   useEffect(() => {
     loadCategories()
     loadPosts()
@@ -36,8 +41,24 @@ const Dashboard = ({
           <Chip key={category.name}>{category.name}</Chip>
         ))}
       </aside>
+      <aside className="dashboard__sorts">
+        <ButtonGroup>
+          <ButtonGroupItem
+            selected={sort === 'voteScore'}
+            onClick={() => setSort('voteScore')}
+          >
+            Vote Score
+          </ButtonGroupItem>
+          <ButtonGroupItem
+            selected={sort === 'timestamp'}
+            onClick={() => setSort('timestamp')}
+          >
+            Date
+          </ButtonGroupItem>
+        </ButtonGroup>
+      </aside>
       <main className="dashboard__posts">
-        {posts.map(post => (
+        {sortedPosts.map(post => (
           <Fragment key={post.id}>
             <Post {...post} />
             <hr className="dashboard__separator" />
