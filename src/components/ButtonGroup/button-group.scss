@@ -4,27 +4,49 @@
   border: 1px solid $light-blue;
   border-radius: 0.5rem;
   align-items: center;
-  height: 1.5rem;
-  width: 15rem;
-  
+
+  &--row {
+    height: 1.5rem;
+    width: 15rem;
+
+    .button-group__item {
+      &:first-child {
+        border-radius: 0.25rem 0 0 0.25rem;
+      }
+
+      &:last-child {
+        border-radius: 0 0.25rem 0.25rem 0;
+      }
+    }
+  }
+
+  &--column {
+    width: 5rem;
+    height: 7.5rem;
+
+    .button-group__item {
+      &:first-child {
+        border-radius: 0.25rem 0.25rem 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 0.25rem 0.25rem;
+      }
+    }
+  }
+
   &__item {
     font-size: 1rem;
     flex: 1 1;
     height: 100%;
+    width: 100%;
     color: $light-blue;
     cursor: pointer;
     font-family: 'Raleway';
     font-weight: 600;
 
-    &:first-child {
-      border-radius: 0.25rem 0 0 0.25rem;
-    }
-  
-    &:last-child {
-      border-radius: 0 0.25rem 0.25rem 0;
-    }
-
-    &--selected {
+    &--selected,
+    &:hover {
       background-color: $light-blue;
       color: $white;
     }
