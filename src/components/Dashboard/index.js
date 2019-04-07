@@ -58,21 +58,21 @@ const Sorts = ({ field, setField, order, setOrder }) => (
         selected={field === VOTE_SCORE}
         onClick={() => setField(VOTE_SCORE)}
       >
-        Vote Score
+        vote score
       </ButtonGroupItem>
       <ButtonGroupItem
         selected={field === TIMESTAMP}
         onClick={() => setField(TIMESTAMP)}
       >
-        Date
+        date
       </ButtonGroupItem>
     </ButtonGroup>
     <ButtonGroup>
       <ButtonGroupItem selected={order === ASC} onClick={() => setOrder(ASC)}>
-        Ascendent
+        ascendent
       </ButtonGroupItem>
       <ButtonGroupItem selected={order === DESC} onClick={() => setOrder(DESC)}>
-        Descendent
+        descendent
       </ButtonGroupItem>
     </ButtonGroup>
   </aside>
@@ -112,8 +112,8 @@ const Dashboard = ({
   return (
     <div className="dashboard">
       <header className="flex justify-between items-center">
-        <Title>Readable</Title>
-        <Button>New Post</Button>
+        <Title>readable</Title>
+        <Button>new post</Button>
       </header>
       <Categories
         categories={categories}
