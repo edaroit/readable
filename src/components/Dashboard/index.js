@@ -18,7 +18,7 @@ import { getPosts } from 'selectors/posts'
 import './dashboard.scss'
 
 const verifyCategoryForPost = (post, category) => {
-  if (category == null) return true
+  if (category == null || category === 'all') return true
   return post.category === category
 }
 
@@ -32,7 +32,7 @@ const Dashboard = ({
   const [field, setField] = useState('voteScore')
   const [order, setOrder] = useState('asc')
   const [selectedCategory, setSelectedCategory] = useState(
-    match.params.category,
+    match.params.category || 'all',
   )
   const selectedPosts = _.chain(posts)
     .filter(post => verifyCategoryForPost(post, selectedCategory))
@@ -51,10 +51,18 @@ const Dashboard = ({
         <Button>New Post</Button>
       </header>
       <aside className="dashboard__categories">
+        <Link to="/">
+          <Chip
+            selected={selectedCategory === 'all'}
+            onClick={() => setSelectedCategory('all')}
+          >
+            all
+          </Chip>
+        </Link>
         {categories.map(category => (
           <Link to={`/${category.name}/posts`} key={category.name}>
             <Chip
-              selected={category.name === selectedCategory}
+              selected={selectedCategory === category.name}
               onClick={() => setSelectedCategory(category.name)}
             >
               {category.name}
