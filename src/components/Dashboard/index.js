@@ -78,10 +78,10 @@ const Sorts = ({ field, setField, order, setOrder }) => (
   </aside>
 )
 
-const Posts = ({ posts, vote }) =>
+const Posts = ({ posts, onVote }) =>
   posts.map(post => (
     <Fragment key={post.id}>
-      <Post {...post} vote={vote} />
+      <Post {...post} onVote={onVote} />
       <hr className="dashboard__separator" />
     </Fragment>
   ))
@@ -131,7 +131,7 @@ const Dashboard = ({
         setOrder={setOrder}
       />
       <main className="dashboard__posts">
-        <Posts posts={selectedPosts} vote={votePost} />
+        <Posts posts={selectedPosts} onVote={votePost} />
       </main>
     </div>
   )
