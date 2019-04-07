@@ -21,7 +21,16 @@ export const ButtonGroupItem = ({ selected, onClick, children }) => (
 )
 
 const ButtonGroup = ({ className, children }) => (
-  <div className={cn('button-group', className && className)}>{children}</div>
+  <div
+    className={cn(
+      'flex',
+      'justify-between',
+      'button-group',
+      className && className,
+    )}
+  >
+    {children}
+  </div>
 )
 
 export default ButtonGroup
