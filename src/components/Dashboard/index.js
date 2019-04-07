@@ -111,7 +111,7 @@ const Dashboard = ({
 
   return (
     <div className="dashboard">
-      <header className="flex justify-between items-center">
+      <header className="flex justify-between items-center dashboard__header">
         <Title>readable</Title>
         <Button>new post</Button>
       </header>
