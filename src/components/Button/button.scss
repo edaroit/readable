@@ -6,11 +6,20 @@
   height: 2rem;
   outline: none;
   white-space: nowrap;
-  background-color: $dark-blue;
-  color: $white;
   font-family: 'Raleway';
   font-weight: 600;
   font-size: 1.25rem;
   padding: 1.5rem;
   border-radius: 0.5rem;
+
+  &--primary {
+    background-color: $dark-blue;
+    color: $white;
+  }
+
+  &--secondary {
+    border: 1px solid $dark-blue;
+    color: $dark-blue;
+    background: transparent;
+  }
 }

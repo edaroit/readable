@@ -1,10 +1,24 @@
 import React from 'react'
+import cn from 'classnames'
 
 import './button.scss'
 
-const Button = ({ children, disabled, onClick, type = 'button' }) => (
+const Button = ({
+  children,
+  disabled,
+  primary = true,
+  secondary = false,
+  onClick,
+  type = 'button',
+}) => (
   <button
-    className="flex items-center button"
+    className={cn(
+      'flex',
+      'items-center',
+      'button',
+      primary && 'button--primary',
+      secondary && 'button--secondary',
+    )}
     disabled={disabled}
     onClick={onClick}
     type={type}

@@ -3,6 +3,10 @@
 .new-post {
   margin-top: 3rem;
 
+  &__buttons {
+    width: 30%;
+  }
+
   &__input {
     background: transparent;
     color: $light-blue;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import uuid from 'uuid/v4'
@@ -46,7 +46,12 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
     <form className="flex flex-column" onSubmit={handleSubmit}>
       <header className="flex justify-between">
         <Title>readable</Title>
-        <Button type="submit">publish</Button>
+        <div className="flex justify-between new-post__buttons">
+          <Link to="/">
+            <Button secondary>cancel</Button>
+          </Link>
+          <Button type="submit">publish</Button>
+        </div>
       </header>
       <article className="flex flex-column new-post">
         <input
