@@ -7,7 +7,7 @@ const App = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={Dashboard} />
-      <Route exact path="/:category/posts" component={Dashboard} />
+      <Route exact path="/:category" component={Dashboard} />
     </Switch>
   </Router>
 )

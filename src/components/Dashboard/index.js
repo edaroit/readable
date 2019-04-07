@@ -39,7 +39,7 @@ const Categories = ({ categories, selectedCategory, setSelectedCategory }) => (
       </Chip>
     </Link>
     {categories.map(category => (
-      <Link to={`/${category.name}/posts`} key={category.name}>
+      <Link to={`/${category.name}`} key={category.name}>
         <Chip
           selected={selectedCategory === category.name}
           onClick={() => setSelectedCategory(category.name)}
