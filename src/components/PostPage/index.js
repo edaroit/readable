@@ -51,7 +51,7 @@ const PostPage = ({
       <Header
         buttons={
           <Link to="/">
-            <Button secondary>cancel</Button>
+            <Button secondary>return</Button>
           </Link>
         }
       />
