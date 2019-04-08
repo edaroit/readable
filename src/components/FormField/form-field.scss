@@ -1,0 +1,16 @@
+@import "../../stylesheets/_variables";
+
+.form-field {
+  background: transparent;
+  color: $light-blue;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  font-size: 1.25rem;
+  font-family: 'Raleway';
+  padding: 1rem 0;
+
+  &--textarea {
+    word-break: break-word;
+  }
+}
