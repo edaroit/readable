@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import Button from 'components/Button'
 import Comment from 'components/Comment'
 import Header from 'components/Header'
+import NewComment from 'components/NewComment'
 import Post from 'components/Post'
 import Separator from 'components/Separator'
 
@@ -16,9 +17,10 @@ import { getPostById } from 'selectors/posts'
 
 import './post-page.scss'
 
-const Comments = ({ comments, onVote }) => (
+const Comments = ({ comments, onVote, postId }) => (
   <section className="post-page__comments">
     <h3 className="post-page__comments__title">{comments.length} responses</h3>
+    <NewComment postId={postId} />
     {comments.map(comment => (
       <Fragment key={comment.id}>
         <Comment {...comment} onVote={onVote} />
@@ -53,7 +55,7 @@ const PostPage = ({
         }
       />
       <Post compact={false} {...post} />
-      <Comments comments={comments} onVote={voteComment} />
+      <Comments comments={comments} onVote={voteComment} postId={post.id} />
     </Fragment>
   )
 }
