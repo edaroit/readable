@@ -43,7 +43,7 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
   return isSubmitted ? (
     <Redirect to="/" />
   ) : (
-    <Fragment>
+    <form className="flex flex-column" onSubmit={handleSubmit}>
       <Header
         buttons={
           <Fragment>
@@ -55,44 +55,42 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
         }
         justifyButtons="between"
       />
-      <form className="flex flex-column" onSubmit={handleSubmit}>
-        <article className="flex flex-column new-post">
-          <input
-            className="new-post__input new-post__input--title"
-            name="title"
-            placeholder="Title"
-            value={title}
-            onChange={({ target }) => setTitle(target.value)}
-          />
-          <input
-            className="new-post__input"
-            name="author"
-            placeholder="Author"
-            value={author}
-            onChange={({ target }) => setAuthor(target.value)}
-          />
-          <div className="flex new-post__categories">
-            {categories.map(c => (
-              <Chip
-                key={c.id}
-                onClick={() => setCategory(c.name)}
-                selected={category === c.name}
-              >
-                {c.name}
-              </Chip>
-            ))}
-          </div>
-          <textarea
-            className="new-post__input"
-            name="body"
-            placeholder="Body"
-            rows="20"
-            value={body}
-            onChange={({ target }) => setBody(target.value)}
-          />
-        </article>
-      </form>
-    </Fragment>
+      <article className="flex flex-column new-post">
+        <input
+          className="new-post__input new-post__input--title"
+          name="title"
+          placeholder="title"
+          value={title}
+          onChange={({ target }) => setTitle(target.value)}
+        />
+        <input
+          className="new-post__input"
+          name="author"
+          placeholder="author"
+          value={author}
+          onChange={({ target }) => setAuthor(target.value)}
+        />
+        <div className="flex new-post__categories">
+          {categories.map(c => (
+            <Chip
+              key={c.id}
+              onClick={() => setCategory(c.name)}
+              selected={category === c.name}
+            >
+              {c.name}
+            </Chip>
+          ))}
+        </div>
+        <textarea
+          className="new-post__input"
+          name="body"
+          placeholder="body"
+          rows="20"
+          value={body}
+          onChange={({ target }) => setBody(target.value)}
+        />
+      </article>
+    </form>
   )
 }
 
