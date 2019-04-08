@@ -40,7 +40,7 @@ const PostPage = ({
           </Link>
         }
       />
-      <Post {...post} />
+      <Post compact={false} {...post} />
       <h3 className="post-page__comments">{comments.length} responses</h3>
       {comments.map(comment => (
         <Fragment key={comment.id}>
