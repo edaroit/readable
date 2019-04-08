@@ -40,7 +40,7 @@ export const saveComment = comment => async dispatch => {
 
 export const voteComment = (id, option) => async dispatch => {
   try {
-    await postComment(option, id)
+    await postComment({ option }, id)
     const comment = { id, option }
     return dispatch(voteCommentSuccess({ comment }))
   } catch (exception) {
