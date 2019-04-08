@@ -6,6 +6,7 @@ import uuid from 'uuid/v4'
 
 import Button from 'components/Button'
 import Chip from 'components/Chip'
+import FormField from 'components/FormField'
 import Header from 'components/Header'
 
 import { savePost } from 'actions/posts'
@@ -43,7 +44,7 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
   return isSubmitted ? (
     <Redirect to="/" />
   ) : (
-    <Fragment>
+    <form className="flex flex-column" onSubmit={handleSubmit}>
       <Header
         buttons={
           <Fragment>
@@ -55,52 +56,41 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
         }
         justifyButtons="between"
       />
-      <form className="flex flex-column" onSubmit={handleSubmit}>
-        <article className="flex flex-column new-post">
-          <input
-            className="new-post__input new-post__input--title"
-            name="title"
-            placeholder="Title"
-            value={title}
-            onChange={({ target }) => setTitle(target.value)}
-          />
-          <input
-            className="new-post__input"
-            name="author"
-            placeholder="Author"
-            value={author}
-            onChange={({ target }) => setAuthor(target.value)}
-          />
-          {/* <select
-          value={category}
-          onChange={({ target }) => setCategory(target.value)}
-          >
+      <article className="flex flex-column new-post">
+        <FormField
+          className="new-post__input--title"
+          name="title"
+          placeholder="title"
+          value={title}
+          onChange={({ target }) => setTitle(target.value)}
+        />
+        <FormField
+          name="author"
+          placeholder="author"
+          value={author}
+          onChange={({ target }) => setAuthor(target.value)}
+        />
+        <div className="flex new-post__categories">
           {categories.map(c => (
-            <option value={c.name}>{c.name}</option>
-            ))}
-          </select> */}
-          <div className="flex new-post__categories">
-            {categories.map(c => (
-              <Chip
-                key={c.id}
-                onClick={() => setCategory(c.name)}
-                selected={category === c.name}
-              >
-                {c.name}
-              </Chip>
-            ))}
-          </div>
-          <textarea
-            className="new-post__input"
-            name="body"
-            placeholder="Body"
-            rows="20"
-            value={body}
-            onChange={({ target }) => setBody(target.value)}
-          />
-        </article>
-      </form>
-    </Fragment>
+            <Chip
+              key={c.id}
+              onClick={() => setCategory(c.name)}
+              selected={category === c.name}
+            >
+              {c.name}
+            </Chip>
+          ))}
+        </div>
+        <FormField
+          as="textarea"
+          name="body"
+          placeholder="body"
+          rows="20"
+          value={body}
+          onChange={({ target }) => setBody(target.value)}
+        />
+      </article>
+    </form>
   )
 }
 
