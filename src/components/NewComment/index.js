@@ -6,13 +6,13 @@ import uuid from 'uuid/v4'
 import Button from 'components/Button'
 import FormField from 'components/FormField'
 
-import { loadComments, saveComment } from 'actions/comments'
+import { saveComment } from 'actions/comments'
 
 import { timestampNow } from 'utils/dates'
 
 import './new-comment.scss'
 
-const NewComment = ({ loadComments, saveComment, postId }) => {
+const NewComment = ({ saveComment, postId }) => {
   const [author, setAuthor] = useState('')
   const [comment, setComment] = useState('')
 
@@ -27,11 +27,12 @@ const NewComment = ({ loadComments, saveComment, postId }) => {
       id: uuid(),
       author,
       body: comment,
-      parentId: postId,
       timestamp: timestampNow(),
+      parentId: postId,
+      voteScore: 1,
+      deleted: false,
     })
     clearFields()
-    loadComments(postId)
   }
 
   return (
@@ -62,5 +63,5 @@ const NewComment = ({ loadComments, saveComment, postId }) => {
 
 export default connect(
   null,
-  dispatch => bindActionCreators({ loadComments, saveComment }, dispatch),
+  dispatch => bindActionCreators({ saveComment }, dispatch),
 )(NewComment)

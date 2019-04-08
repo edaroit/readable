@@ -17,7 +17,7 @@ import { getPostById } from 'selectors/posts'
 
 import './post-page.scss'
 
-const Comments = ({ comments, onVote, postId }) => (
+const Comments = ({ comments, postId, onVote }) => (
   <section className="post-page__comments">
     <h3 className="post-page__comments__title">{comments.length} responses</h3>
     <NewComment postId={postId} />
@@ -55,7 +55,7 @@ const PostPage = ({
         }
       />
       <Post compact={false} {...post} />
-      <Comments comments={comments} onVote={voteComment} postId={post.id} />
+      <Comments comments={comments} postId={post.id} onVote={voteComment} />
     </Fragment>
   )
 }
