@@ -16,6 +16,18 @@ import { getPostById } from 'selectors/posts'
 
 import './post-page.scss'
 
+const Comments = ({ comments, onVote }) => (
+  <section className="post-page__comments">
+    <h3 className="post-page__comments__title">{comments.length} responses</h3>
+    {comments.map(comment => (
+      <Fragment key={comment.id}>
+        <Comment {...comment} onVote={onVote} />
+        <Separator />
+      </Fragment>
+    ))}
+  </section>
+)
+
 const PostPage = ({
   loadComments,
   loadPosts,
@@ -41,17 +53,7 @@ const PostPage = ({
         }
       />
       <Post compact={false} {...post} />
-      <section className="post-page__comments">
-        <h3 className="post-page__comments__title">
-          {comments.length} responses
-        </h3>
-        {comments.map(comment => (
-          <Fragment key={comment.id}>
-            <Comment {...comment} onVote={voteComment} />
-            <Separator />
-          </Fragment>
-        ))}
-      </section>
+      <Comments comments={comments} onVote={voteComment} />
     </Fragment>
   )
 }
