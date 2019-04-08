@@ -2,10 +2,14 @@
 
 .post-page {
   &__comments {
-    padding: 3rem 0 1rem;
-    color: $light-blue;
-    font-size: 1.75rem;
-    font-family: 'Raleway';
-    font-weight: 600;
+    padding: 1.5rem;
+
+    &__title {
+      padding: 1rem 0;
+      color: $light-blue;
+      font-size: 1.75rem;
+      font-family: 'Raleway';
+      font-weight: 600;
+    }
   }
 }

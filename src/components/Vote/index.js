@@ -1,10 +1,18 @@
 import React from 'react'
+import cn from 'classnames'
 
 import ButtonGroup, { ButtonGroupItem } from 'components/ButtonGroup'
 
-const Vote = ({ id, voteScore, onVote }) => (
-  <aside className="flex flex-column items-center justify-center">
-    <ButtonGroup direction="column">
+const Vote = ({ id, voteScore, onVote, direction = 'column' }) => (
+  <aside
+    className={cn(
+      'flex',
+      `flex-${direction}`,
+      'items-center',
+      direction === 'column' && 'justify-center',
+    )}
+  >
+    <ButtonGroup direction={direction}>
       <ButtonGroupItem onClick={() => onVote(id, 'upVote')}>
         like
       </ButtonGroupItem>

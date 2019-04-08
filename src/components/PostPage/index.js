@@ -41,13 +41,17 @@ const PostPage = ({
         }
       />
       <Post compact={false} {...post} />
-      <h3 className="post-page__comments">{comments.length} responses</h3>
-      {comments.map(comment => (
-        <Fragment key={comment.id}>
-          <Comment {...comment} onVote={voteComment} />
-          <Separator />
-        </Fragment>
-      ))}
+      <section className="post-page__comments">
+        <h3 className="post-page__comments__title">
+          {comments.length} responses
+        </h3>
+        {comments.map(comment => (
+          <Fragment key={comment.id}>
+            <Comment {...comment} onVote={voteComment} />
+            <Separator />
+          </Fragment>
+        ))}
+      </section>
     </Fragment>
   )
 }
