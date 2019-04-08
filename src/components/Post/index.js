@@ -37,7 +37,7 @@ const Post = ({
           </div>
         )}
       </div>
-      <div className={cn('post__body', compact && 'post-body--compact')}>
+      <div className={cn('post__body', compact && 'post__body--compact')}>
         {body}
       </div>
       {compact && (

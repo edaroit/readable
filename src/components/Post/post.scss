@@ -31,13 +31,15 @@
   &__body {
     padding: 1rem 0;
     text-align: justify;
-    font-size: 1.25rem;
+    line-height: 1.5rem;
     width: 90%;
 
     &--compact {
       display: block;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      word-break: break-word;
     }
   }
 
