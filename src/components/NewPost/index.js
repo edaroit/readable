@@ -71,14 +71,6 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
             value={author}
             onChange={({ target }) => setAuthor(target.value)}
           />
-          {/* <select
-          value={category}
-          onChange={({ target }) => setCategory(target.value)}
-          >
-          {categories.map(c => (
-            <option value={c.name}>{c.name}</option>
-            ))}
-          </select> */}
           <div className="flex new-post__categories">
             {categories.map(c => (
               <Chip
