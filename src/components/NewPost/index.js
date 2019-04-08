@@ -6,6 +6,7 @@ import uuid from 'uuid/v4'
 
 import Button from 'components/Button'
 import Chip from 'components/Chip'
+import FormField from 'components/FormField'
 import Header from 'components/Header'
 
 import { savePost } from 'actions/posts'
@@ -56,15 +57,14 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
         justifyButtons="between"
       />
       <article className="flex flex-column new-post">
-        <input
-          className="new-post__input new-post__input--title"
+        <FormField
+          className="new-post__input--title"
           name="title"
           placeholder="title"
           value={title}
           onChange={({ target }) => setTitle(target.value)}
         />
-        <input
-          className="new-post__input"
+        <FormField
           name="author"
           placeholder="author"
           value={author}
@@ -81,8 +81,8 @@ const NewPost = ({ savePost, loadCategories, categories }) => {
             </Chip>
           ))}
         </div>
-        <textarea
-          className="new-post__input"
+        <FormField
+          as="textarea"
           name="body"
           placeholder="body"
           rows="20"
