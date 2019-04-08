@@ -4,8 +4,8 @@
   margin-bottom: 2rem;
 
   &__title {
+    padding: 1rem 0;
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
     color: $light-blue;
     font-family: 'Raleway';
     font-weight: 900;
@@ -13,11 +13,12 @@
 
   &__information {
     span {
-      margin-right: 1rem
+      margin-right: 1rem;
+      color: $gray;
     }
   }
 
-  &__categories {
+  &__category {
     & > .chip {
       font-size: 0.75rem;
       padding: 0 0.5rem;
@@ -27,18 +28,17 @@
     }
   }
 
-  &__sub-title {
-    color: $gray;
-  }
-
   &__body {
     padding: 1rem 0;
     text-align: justify;
     font-size: 1.25rem;
-    display: block;
     width: 90%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+    &--compact {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   &__responses {

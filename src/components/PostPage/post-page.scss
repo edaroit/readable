@@ -1,0 +1,11 @@
+@import "../../stylesheets/_variables";
+
+.post-page {
+  &__comments {
+    padding: 3rem 0 1rem;
+    color: $light-blue;
+    font-size: 1.75rem;
+    font-family: 'Raleway';
+    font-weight: 600;
+  }
+}

@@ -5,9 +5,9 @@ import Title from 'components/Title'
 
 import './header.scss'
 
-const Header = ({ title, buttons, justifyButtons = 'end' }) => (
+const Header = ({ buttons, justifyButtons = 'end' }) => (
   <header className="flex items-center justify-between header">
-    <Title>{title}</Title>
+    <Title>readable</Title>
     <div className={cn('flex', `justify-${justifyButtons}`, 'header__buttons')}>
       {buttons}
     </div>
