@@ -1,10 +1,5 @@
 import { createAction } from 'redux-actions'
-import {
-  getComments,
-  postComment,
-  patchComment,
-  removeComment,
-} from 'utils/api'
+import { getComments, postComment, putComment, removeComment } from 'utils/api'
 
 export const fetchCommentsSuccess = createAction('FETCH_COMMENTS_SUCCESS')
 export const fetchCommentsFailure = createAction('FETCH_COMMENTS_FAILURE')
@@ -51,7 +46,7 @@ export const voteComment = (id, option) => async dispatch => {
 
 export const updateComment = (id, changes) => async dispatch => {
   try {
-    await patchComment(id, changes)
+    await putComment(id, changes)
     const comment = { id, ...changes }
     return dispatch(updateCommentSuccess({ comment }))
   } catch (exception) {
