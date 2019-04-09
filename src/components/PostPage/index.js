@@ -10,20 +10,20 @@ import NewComment from 'components/NewComment'
 import Post from 'components/Post'
 import Separator from 'components/Separator'
 
-import { loadComments, voteComment } from 'actions/comments'
+import { loadComments, voteComment, deleteComment } from 'actions/comments'
 import { loadPosts, votePost } from 'actions/posts'
 import { getComments } from 'selectors/comments'
 import { getPostById } from 'selectors/posts'
 
 import './post-page.scss'
 
-const Comments = ({ comments, postId, onVote }) => (
+const Comments = ({ comments, postId, onVote, onDelete }) => (
   <section className="post-page__comments">
     <h3 className="post-page__comments__title">{comments.length} responses</h3>
     <NewComment postId={postId} />
     {comments.map(comment => (
       <Fragment key={comment.id}>
-        <Comment {...comment} onVote={onVote} />
+        <Comment {...comment} onVote={onVote} onDelete={onDelete} />
         <Separator />
       </Fragment>
     ))}
@@ -33,6 +33,7 @@ const Comments = ({ comments, postId, onVote }) => (
 const PostPage = ({
   loadComments,
   voteComment,
+  deleteComment,
   loadPosts,
   votePost,
   comments = [],
@@ -56,7 +57,12 @@ const PostPage = ({
         }
       />
       <Post compact={false} {...post} onVote={votePost} />
-      <Comments comments={comments} postId={post.id} onVote={voteComment} />
+      <Comments
+        comments={comments}
+        postId={post.id}
+        onVote={voteComment}
+        onDelete={deleteComment}
+      />
     </Fragment>
   )
 }
@@ -68,7 +74,7 @@ export default connect(
   }),
   dispatch =>
     bindActionCreators(
-      { loadComments, voteComment, loadPosts, votePost },
+      { loadComments, voteComment, deleteComment, loadPosts, votePost },
       dispatch,
     ),
 )(PostPage)
