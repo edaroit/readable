@@ -11,7 +11,7 @@ import Post from 'components/Post'
 import Separator from 'components/Separator'
 
 import { loadComments, voteComment, deleteComment } from 'actions/comments'
-import { loadPosts, votePost, deletePost } from 'actions/posts'
+import { votePost, deletePost } from 'actions/posts'
 import { getComments } from 'selectors/comments'
 import { getPostById } from 'selectors/posts'
 
@@ -34,16 +34,11 @@ const PostPage = ({
   loadComments,
   voteComment,
   deleteComment,
-  loadPosts,
   votePost,
   deletePost,
   comments = [],
   post = {},
 }) => {
-  useEffect(() => {
-    loadPosts()
-  }, [])
-
   useEffect(() => {
     loadComments(post.id)
   }, [post])
@@ -79,7 +74,6 @@ export default connect(
         loadComments,
         voteComment,
         deleteComment,
-        loadPosts,
         votePost,
         deletePost,
       },
