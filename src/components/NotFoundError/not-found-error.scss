@@ -1,0 +1,17 @@
+@import "../../stylesheets/_variables";
+
+.not-found-error {
+  min-height: 70vh;
+
+  &__title {
+    font-size: 5rem;
+    color: $light-blue;
+    font-family: 'Raleway';
+    font-weight: 900;
+  }
+
+  &__information {
+    font-size: 1.5rem;
+    color: $gray;
+  }
+}

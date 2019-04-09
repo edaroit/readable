@@ -7,11 +7,12 @@ import Button from 'components/Button'
 import Comment from 'components/Comment'
 import Header from 'components/Header'
 import NewComment from 'components/NewComment'
+import NotFoundError from 'components/NotFoundError'
 import Post from 'components/Post'
 import Separator from 'components/Separator'
 
 import { loadComments, voteComment, deleteComment } from 'actions/comments'
-import { loadPosts, votePost } from 'actions/posts'
+import { votePost, deletePost } from 'actions/posts'
 import { getComments } from 'selectors/comments'
 import { getPostById } from 'selectors/posts'
 
@@ -34,20 +35,18 @@ const PostPage = ({
   loadComments,
   voteComment,
   deleteComment,
-  loadPosts,
   votePost,
+  deletePost,
   comments = [],
   post = {},
 }) => {
   useEffect(() => {
-    loadPosts()
-  }, [])
-
-  useEffect(() => {
-    loadComments(post.id)
+    if (post.id != null) loadComments(post.id)
   }, [post])
 
-  return (
+  return post.id == null ? (
+    <NotFoundError />
+  ) : (
     <Fragment>
       <Header
         buttons={
@@ -56,7 +55,7 @@ const PostPage = ({
           </Link>
         }
       />
-      <Post compact={false} {...post} onVote={votePost} />
+      <Post compact={false} {...post} onVote={votePost} onDelete={deletePost} />
       <Comments
         comments={comments}
         postId={post.id}
@@ -74,7 +73,13 @@ export default connect(
   }),
   dispatch =>
     bindActionCreators(
-      { loadComments, voteComment, deleteComment, loadPosts, votePost },
+      {
+        loadComments,
+        voteComment,
+        deleteComment,
+        votePost,
+        deletePost,
+      },
       dispatch,
     ),
 )(PostPage)

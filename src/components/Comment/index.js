@@ -13,9 +13,9 @@ const Comment = ({
   timestamp,
   body,
   voteScore,
-  onVote,
-  onEdit,
-  onDelete,
+  onVote = () => {},
+  onEdit = () => {},
+  onDelete = () => {},
 }) => (
   <article className="flex flex-column comment">
     <div className="flex items-center comment__information">
