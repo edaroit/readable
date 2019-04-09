@@ -11,7 +11,7 @@ import Post from 'components/Post'
 import Separator from 'components/Separator'
 
 import { loadComments, voteComment, deleteComment } from 'actions/comments'
-import { loadPosts, votePost } from 'actions/posts'
+import { loadPosts, votePost, deletePost } from 'actions/posts'
 import { getComments } from 'selectors/comments'
 import { getPostById } from 'selectors/posts'
 
@@ -36,6 +36,7 @@ const PostPage = ({
   deleteComment,
   loadPosts,
   votePost,
+  deletePost,
   comments = [],
   post = {},
 }) => {
@@ -56,7 +57,7 @@ const PostPage = ({
           </Link>
         }
       />
-      <Post compact={false} {...post} onVote={votePost} />
+      <Post compact={false} {...post} onVote={votePost} onDelete={deletePost} />
       <Comments
         comments={comments}
         postId={post.id}
@@ -74,7 +75,14 @@ export default connect(
   }),
   dispatch =>
     bindActionCreators(
-      { loadComments, voteComment, deleteComment, loadPosts, votePost },
+      {
+        loadComments,
+        voteComment,
+        deleteComment,
+        loadPosts,
+        votePost,
+        deletePost,
+      },
       dispatch,
     ),
 )(PostPage)
