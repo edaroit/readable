@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Dashboard from 'components/Dashboard'
 import NewPost from 'components/NewPost'
+import EditPost from 'components/EditPost'
 import PostPage from 'components/PostPage'
 
 import './app.scss'
@@ -12,6 +13,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Dashboard} />
       <Route exact path="/new" component={NewPost} />
+      <Route exact path="/:id/edit" component={EditPost} />
       <Route exact path="/:category" component={Dashboard} />
       <Route exact path="/:category/:id" component={PostPage} />
     </Switch>
