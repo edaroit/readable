@@ -20,8 +20,8 @@ const get = resource => axios.get(`${API_URL}/${resource}`, { headers })
 const post = (resource, data) =>
   axios.post(`${API_URL}/${resource}`, data, { headers })
 
-const patch = (resource, data) =>
-  axios.patch(`${API_URL}/${resource}`, data, { headers })
+const put = (resource, data) =>
+  axios.put(`${API_URL}/${resource}`, data, { headers })
 
 const remove = resource => axios.delete(`${API_URL}/${resource}`, { headers })
 
@@ -37,7 +37,7 @@ export const postPost = (data, id) => {
   post('posts', data)
 }
 
-export const patchPost = (id, data) => patch(`posts/${id}`, data)
+export const putPost = (id, data) => put(`posts/${id}`, data)
 
 export const removePost = id => remove(`posts/${id}`)
 
@@ -51,6 +51,6 @@ export const postComment = (data, id) => {
   post('comments', data)
 }
 
-export const patchComment = (id, data) => patch(`comments/${id}`, data)
+export const putComment = (id, data) => put(`comments/${id}`, data)
 
 export const removeComment = id => remove(`comments/${id}`)

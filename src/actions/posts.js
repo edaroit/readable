@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { getPosts, postPost, patchPost, removePost } from 'utils/api'
+import { getPosts, postPost, putPost, removePost } from 'utils/api'
 
 export const fetchPostsSuccess = createAction('FETCH_POSTS_SUCCESS')
 export const fetchPostsFailure = createAction('FETCH_POSTS_FAILURE')
@@ -46,7 +46,7 @@ export const votePost = (id, option) => async dispatch => {
 
 export const updatePost = (id, changes) => async dispatch => {
   try {
-    await patchPost(id, changes)
+    await putPost(id, changes)
     const post = { id, ...changes }
     return dispatch(updatePostSuccess({ post }))
   } catch (exception) {
