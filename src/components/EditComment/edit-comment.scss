@@ -1,0 +1,20 @@
+@import "../../stylesheets/_variables";
+
+.edit-comment {
+  border: 1px solid $light-blue;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 2rem 0;
+
+  &__button {
+    padding: 1rem 0 0;
+
+    .button {
+      margin-right: 1rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
