@@ -4,4 +4,7 @@ const postsSelector = state =>
 const findPostById = (posts, id) => posts.find(post => post.id === id)
 
 export const getPosts = postsSelector
-export const getPostById = (state, id) => findPostById(postsSelector(state), id)
+export const getPostById = (state, id) => {
+  console.log('id', id)
+  return findPostById(postsSelector(state), id)
+}
