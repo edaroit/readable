@@ -7,6 +7,7 @@ import Button from 'components/Button'
 import Comment from 'components/Comment'
 import Header from 'components/Header'
 import NewComment from 'components/NewComment'
+import NotFoundError from 'components/NotFoundError'
 import Post from 'components/Post'
 import Separator from 'components/Separator'
 
@@ -40,10 +41,12 @@ const PostPage = ({
   post = {},
 }) => {
   useEffect(() => {
-    loadComments(post.id)
+    if (post.id != null) loadComments(post.id)
   }, [post])
 
-  return (
+  return post.id == null ? (
+    <NotFoundError />
+  ) : (
     <Fragment>
       <Header
         buttons={
